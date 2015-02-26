@@ -11,12 +11,20 @@ import Loc._
 import net.liftmodules.JQueryModule
 import net.liftweb.http.js.jquery._
 
+import code.config._
+
 /**
  * A class that's instantiated early and run.  It allows the application
  * to modify lift's environment
  */
 class Boot {
+
+
   def boot {
+
+    // init mongodb
+    MongoConfig.init()
+
     // where to search snippet
     LiftRules.addToPackages("code")
 
@@ -50,4 +58,6 @@ class Boot {
     JQueryModule.init()
 
   }
+
+
 }

@@ -50,12 +50,12 @@ object Site extends Locs {
   val password    = MenuLoc(Menu.i("Password") / "settings" / "password" >> RequireLoggedIn >> SettingsGroup)
   val account     = MenuLoc(Menu.i("Account") / "settings" / "account" >> SettingsGroup >> RequireLoggedIn)
   val editProfile = MenuLoc(Menu("EditProfile", "Profile") / "settings" / "profile" >> SettingsGroup >> RequireLoggedIn)
-  val register    = MenuLoc(Menu.i("Register") / "register" >> RequireNotLoggedIn)
+  val signup      = MenuLoc(Menu.i("Signup") / "signup" >> RequireNotLoggedIn)
 
   private def menus = List(
     home.menu,
     Menu.i("Login") / "login" >> RequireNotLoggedIn,
-    register.menu,
+    signup.menu,
     loginToken.menu,
     logout.menu,
     profileParamMenu,

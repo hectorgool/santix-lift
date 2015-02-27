@@ -29,17 +29,23 @@ class Boot {
     LiftRules.addToPackages("code")
 
     // Build SiteMap
+    /*
     val entries = List(
-      Menu.i("Home") / "index", // the simple way to declare a menu
-
-      // more complex because this menu allows anything in the
-      // /static path to be visible
+      Menu.i("Home") / "index",
       Menu(Loc("Static", Link(List("static"), true, "/static/index"),
-	       "Static Content")))
+	       "Static Content"))
+      )
+    */
+
+    // set the default htmlProperties
+    LiftRules.htmlProperties.default.set((r: Req) => new Html5Properties(r.userAgent))
+
+    // Build SiteMap
+    LiftRules.setSiteMap(Site.siteMap)
 
     // set the sitemap.  Note if you don't want access control for
     // each page, just comment this line out.
-    LiftRules.setSiteMap(SiteMap(entries:_*))
+    //LiftRules.setSiteMap(SiteMap(entries:_*))
 
     //Show the spinny image when an Ajax call starts
     LiftRules.ajaxStart =
@@ -56,6 +62,27 @@ class Boot {
     LiftRules.jsArtifacts = JQueryArtifacts
     JQueryModule.InitParam.JQuery=JQueryModule.JQuery191
     JQueryModule.init()
+
+    //by santo
+    LiftRules.resourceNames = "SANTIX" :: Nil
+
+    //by santo
+    ResourceServer.allow {
+      case "assets" :: _ => true //assets, in main/resources/toserve/
+    }
+
+    //by santo, redirect
+    //http://groups.google.com/group/liftweb/browse_thread/thread/b7c071c5c8e3ec75
+    LiftRules.uriNotFound.prepend(NamedPF("404Handler"){
+      case (req,failure) =>
+        NotFoundAsTemplate(ParsePath(List("404"), "html" ,false, false))
+    })
+
+    //by santo
+    LiftRules.responseTransformers.append {
+      case r if r.toResponse.code == 403 => RedirectResponse("/403.html")
+      case r => r
+    }
 
   }
 

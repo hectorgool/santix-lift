@@ -1,88 +1,39 @@
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title data-lift="Menu.title">App: </title>
-  <style data-lift="CSS.blueprint"></style>
-  <style data-lift="CSS.fancyType"></style>
-  <script id="jquery" src="/classpath/jquery.js" type="text/javascript"></script>
-  <script id="json" src="/classpath/json.js" type="text/javascript"></script>
-  <style type="text/css">
-    /* <![CDATA[ */
-    .edit_error_class {
-      display: block;
-      color: red;
-    }
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<title>SANTIX</title>-->
 
-    .sidebar ul {
-     margin:0;
-     padding:0;
-     border-bottom:1px solid #ccc;
-   }
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
-   .sidebar ul li {
-     margin:0;
-     padding:0;
-     list-style:none;
-     border:1px solid #ccc;
-     border-bottom:none;
-   }
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 
-   .sidebar ul li a {
-     display:block;
-     padding:3px;
-     text-indent:30px;
-     text-decoration:none;
-   }
+    <link rel="stylesheet" href="/classpath/assets/css/santix.css">
 
-   .sidebar ul li span {
-     display:block;
-     padding:3px;
-     text-indent:30px;
-     text-decoration:none;
-   }
-
-   .sidebar ul li a:hover {
-     background-color: #eee;
-   }
-
-   .spinner {
-     display:none;
-     margin-bottom: 0px;
-     margin-left: 5px;
-   }
-
-   /* ]]> */
- </style>
-</head>
-<body>
-  <div class="container">
-    <div class="column span-12 last" style="text-align: right">
-      <h1 class="alt">app<img class="spinner" alt="" id="ajax-loader" src="/images/ajax-loader.gif"></h1>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    
+  </head>
+  <body>
+    
+    <!--<span class="lift:Menu.builder"></span>-->
+    <!--<div class="lift:Msgs?showAll=true"></div>-->     
+    <div id="content">The main content will get bound here</div>      
+  
+    <!--<lift:tail>-->
+    <div data-lift="tail">
+      <script id="jquery" src="/classpath/jquery.js" type="text/javascript"></script>
+      <script id="json" src="/classpath/json.js" type="text/javascript"></script>
+      <script data-lift="with-resource-id" src="/classpath/assets/js/santix.min.js"></script>
+    <!--</lift:tail>-->
     </div>
 
-    <hr>
-
-    <div class="column span-6 colborder sidebar">
-      <hr class="space" >
-
-      <span data-lift="Menu.builder"></span>
-
-      <div data-lift="Msgs?showAll=true"></div>
-      <hr class="space">
-    </div>
-
-    <div class="column span-16 last">
-      <div id="content">The main content will get bound here</div>
-    </div>
-
-    <hr>
-
-    <div class="column span-23 last" style="text-align: center">
-      <h4 class="alt">
-        <a href="http://www.liftweb.net"><i>Lift</i></a>
-        is Copyright 2007-2014 WorldWide Conferencing, LLC.
-        Distributed under an Apache 2.0 License.</h4>
-      </div>
-    </div>
   </body>
-  </html>
+</html>

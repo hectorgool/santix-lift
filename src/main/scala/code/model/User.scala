@@ -16,31 +16,30 @@ package code
 package model
 
 
+import net.liftweb._
 import java.util.UUID
 import org.bson.types.ObjectId
-import net.liftweb._
 import common._
 import mongodb.record._
 import mongodb.record.field._
 import record.field._
 import util.Helpers
-
-import net.liftmodules.mongoauth._
-import net.liftmodules.mongoauth.field._
-import net.liftmodules.mongoauth.model._
-import net.liftweb.mongodb.record.field._
 import Helpers._
 import util.FieldError
 import util.Props
-import scala.xml.{NodeSeq, Text}
-import http.{CleanRequestVarOnSessionTransition, LiftResponse, RequestVar, S, SessionVar, Req}
-import lib._
+import scala.xml.{Text}
+import http.{S, SessionVar, Req}
+
+import net.liftmodules._
+import mongoauth._
+import mongoauth.field._
+import mongoauth.model._
+import net.liftmodules.mongoauth.field.{PasswordField => MongoAuthPasswordField}//Renaming Members on Import
 
 
 class User private () extends MongoAuthUser[User] with ObjectIdPk[User] {
 
 
-  import net.liftmodules.mongoauth.field.PasswordField
   def meta = User
 
   def userIdAsString: String = id.toString
@@ -54,8 +53,8 @@ class User private () extends MongoAuthUser[User] with ObjectIdPk[User] {
     override def displayName = "Firstname"
     override def validations =
       valMinLen(2, S.?("user.firstname.valminlen")) _ ::
-        valMaxLen(64, S.?("user.firstname.valmaxlen")) _ ::
-        super.validations
+      valMaxLen(64, S.?("user.firstname.valmaxlen")) _ ::
+      super.validations
   }
 
   object lastname extends StringField(this, 64) {
@@ -63,8 +62,8 @@ class User private () extends MongoAuthUser[User] with ObjectIdPk[User] {
     override def displayName = "Lastname"
     override def validations =
       valMinLen(2, S.?("user.lastname.valminlen")) _ ::
-        valMaxLen(64, S.?("user.lastname.valmaxlen")) _ ::
-        super.validations
+      valMaxLen(64, S.?("user.lastname.valmaxlen")) _ ::
+      super.validations
   }
 
   object username extends StringField(this, 32) {
@@ -73,9 +72,7 @@ class User private () extends MongoAuthUser[User] with ObjectIdPk[User] {
     override def setFilter = trim _ :: super.setFilter
     private def valUnique(msg: => String)(value: String): List[FieldError] = {
       if (value.length > 0)
-        meta.findAll(name, value).filterNot(_.id.get == owner.id.get).map(u =>
-        FieldError(this, Text(msg))
-      )
+        meta.findAll(name, value).filterNot(_.id.get == owner.id.get).map(u => FieldError(this, Text(msg)))
       else
         Nil
     }
@@ -91,9 +88,7 @@ class User private () extends MongoAuthUser[User] with ObjectIdPk[User] {
     override def displayName = "Email"
     override def setFilter = trim _ :: toLower _ :: super.setFilter
     private def valUnique(msg: => String)(value: String): List[FieldError] = {
-      owner.meta.findAll(name, value).filter(_.id.get != owner.id.get).map(u =>
-      FieldError(this, Text(msg))
-      )
+      owner.meta.findAll(name, value).filter(_.id.get != owner.id.get).map(u => FieldError(this, Text(msg)))
     }
     override def validations =
       valUnique("user.email.valunique") _ ::
@@ -101,7 +96,7 @@ class User private () extends MongoAuthUser[User] with ObjectIdPk[User] {
       super.validations
   }  
 
-  object password extends PasswordField(this, 8, 254){
+  object password extends MongoAuthPasswordField(this, 8, 254){
     override def uniqueFieldId: Box[String] = Full("password")
     override def displayName = "Password"
     override def validations =
@@ -133,8 +128,6 @@ class User private () extends MongoAuthUser[User] with ObjectIdPk[User] {
 
 object User extends User with ProtoAuthUserMeta[User] with Loggable{
 
-
-  import net.liftmodules.mongoauth.field.PasswordField
 
   override def collectionName = "users"
 
@@ -248,7 +241,7 @@ object User extends User with ProtoAuthUserMeta[User] with Loggable{
         println("user system already exist!")
       case _ =>
 
-        val hash = PasswordField.hashpw("asdfasdf")
+        val hash = MongoAuthPasswordField.hashpw("asdfasdf")
         var user = User.createRecord
           .username("santo")
           .email("santo@santo.com")

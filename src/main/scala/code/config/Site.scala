@@ -17,6 +17,7 @@ object MenuGroups {
   val SettingsGroup = LocGroup("settings")
   val TopBarGroup = LocGroup("topbar")
 
+
 }
 
 /*
@@ -46,10 +47,10 @@ object Site extends Locs {
   ) / "user" >> Loc.CalcValue(() => User.currentUser)
   lazy val profileLoc = profileParamMenu.toLoc
 
-  val password = MenuLoc(Menu.i("Password") / "settings" / "password" >> RequireLoggedIn >> SettingsGroup)
-  val account = MenuLoc(Menu.i("Account") / "settings" / "account" >> SettingsGroup >> RequireLoggedIn)
+  val password    = MenuLoc(Menu.i("Password") / "settings" / "password" >> RequireLoggedIn >> SettingsGroup)
+  val account     = MenuLoc(Menu.i("Account") / "settings" / "account" >> SettingsGroup >> RequireLoggedIn)
   val editProfile = MenuLoc(Menu("EditProfile", "Profile") / "settings" / "profile" >> SettingsGroup >> RequireLoggedIn)
-  val register = MenuLoc(Menu.i("Register") / "register" >> RequireNotLoggedIn)
+  val register    = MenuLoc(Menu.i("Register") / "register" >> RequireNotLoggedIn)
 
   private def menus = List(
     home.menu,

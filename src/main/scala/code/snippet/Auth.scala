@@ -12,11 +12,14 @@ import sitemap._
 import js.JsCmds._
 import scala.xml._
 import util.Helpers._
-import net.liftweb.http.SHtml._
-import net.liftweb.http.js.{JE,JsCmd,JsCmds}
+import http.SHtml._
+import http.js.{JE,JsCmd,JsCmds}
+import net.liftmodules.mongoauth.LoginRedirect
+import net.liftmodules.mongoauth.model.ExtSession
+import net.liftmodules.mongoauth.field.{PasswordField => MongoAuthPasswordField}//Renaming Members on Import
 
 
-class Auth extends Loggable with UserHelper with ReCaptcha {
+class Auth extends Loggable with ReCaptcha {
 
 
   def render = {
@@ -32,16 +35,19 @@ class Auth extends Loggable with UserHelper with ReCaptcha {
 
       (for {
         r <- S.request if r.post_?
-        name <- S.param("email").map(_.trim.toLowerCase) ?~! "email Not Found"
+        email <- S.param("email").map(_.trim.toLowerCase) ?~! "email Not Found"
         candidate <- S.param("password").map(_.trim) ?~! "passwdord Not Found"
-        user <- User.find("email", name)
-        if isMatch( candidate, user.password.get )
+        user <- User.findByEmail( email )
+        if MongoAuthPasswordField.isMatch( candidate, user.password.get )
       } yield user) match {
         case Full(user) =>          
           User.loginCredentials(LoginCredentials(email, remember))
           User.logUserIn(user, true)
           if (remember)
             User.createExtSession(user.id.get)
+          else{
+            ExtSession.deleteExtCookie()
+          }
           S.redirectTo(from)
         case _ =>
           count += 1

@@ -1,0 +1,101 @@
+<div id="main" class="lift:surround?with=default&at=content" xmlns="http://www.w3.org/1999/html">
+
+    <div class="container">
+
+        <span lift="TestCond.loggedin">
+            <div data-lift="embed?what=templates-hidden/_navbar"></div>
+        </span>
+
+
+        <span lift="TestCond.loggedout">
+
+            <div data-lift="embed?what=templates-hidden/_navbar"></div>
+
+            <div class="container">
+                <div class="row row-centered">
+                    <div class="col-md-6 col-md-offset-3">
+
+                        <h1>
+                            <span data-lift="Loc.i">login.title</span>
+                        </h1>                        
+
+                        <lift:Menu.item name="signup">
+                            <a class="btn btn-lg btn-default btn-block" href="/signup">
+                                <span data-lift="Loc.i">signup.screen</span>
+                            </a>
+                        </lift:Menu.item>
+
+                        <p>
+                            <span data-lift="Msg?id=loginError"></span>
+                            <span data-lift="Msg?id=sendEmail"></span>
+                        </p>
+
+                        <form accept-charset="UTF-8" role="form" class="lift:form.ajax">
+
+                            <div data-lift="Auth">
+
+                                <fieldset>
+
+                                    <div class="form-group">
+                                        <label for="email">
+                                            <span data-lift="Loc.i">login.email.label</span>
+                                        </label>
+                                        <input class="form-control input-lg" placeholder="Email" name="email" type="text">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="password">
+                                            <span data-lift="Loc.i">login.password.label</span>
+                                        </label>
+                                        <input class="form-control input-lg" placeholder="Password" name="password" type="password">
+                                    </div>
+                                    
+                                    <div class="checkbox">
+                                        <label>
+                                            <input id="remember" name="remember" type="checkbox"> <span data-lift="Loc.i">login.remember-me.label</span>
+                                        </label>
+                                    </div>
+                                    
+                                    <label>
+                                        <a href="/lost-password">
+                                            <span data-lift="Loc.i">login.forgot-password.label</span>
+                                        </a>
+                                    </label>                                    
+
+                                    <button name="login" class="btn btn-lg btn-white btn-block">
+                                        <span data-lift="Loc.i">login.button</span>
+                                    </button>
+
+                                </fieldset>
+
+                            </div>
+
+                        </form>
+
+                        <hr>
+                        <!--
+                        <p>
+                            <span data-lift="Loc.i">home.need.account</span>
+                        </p>
+                        -->
+                        <center><h4>OR</h4></center>
+
+                        <a href="/signup" class="btn btn-lg btn-white btn-block">
+                            <span data-lift="Loc.i">signup.link</span>
+                        </a>
+
+                    </div>
+                </div>
+            </div> <!-- /container -->
+
+        </span>
+
+        <span lift="embed?what=/templates-hidden/_footerbar"> </span>
+
+        <div data-lift="tail">
+            <script data-lift="with-resource-id" src="/classpath/assets/js/santix.js"></script>
+        </div>
+
+    </div>
+
+</div>

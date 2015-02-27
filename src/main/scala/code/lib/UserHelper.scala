@@ -30,6 +30,13 @@ trait UserHelper extends Factory with Loggable {
     }
   }
 
+  def isMatch(toTest: String, encryptedPassword: String): Boolean = {
+    if (toTest.length > 0 && encryptedPassword.length > 0)
+      tryo(BCrypt.checkpw(toTest, encryptedPassword)).openOr(false)
+    else
+      false
+  }
+
   def emptyToZero( in: String ): Double = {
     if (!in.isEmpty){
       in.toDouble

@@ -34,7 +34,11 @@ libraryDependencies ++= {
     "com.foursquare"          %% "rogue-lift"              % "2.5.1" intransitive(),
     "com.foursquare"          %% "rogue-index"             % "2.5.1" intransitive(),
     "net.liftweb"             %% "lift-mongodb-record"     % "2.6",
-    "net.tanesha.recaptcha4j"  % "recaptcha4j"             % "0.0.7"
+    "net.tanesha.recaptcha4j"  % "recaptcha4j"             % "0.0.7",
+    "com.twitter"              % "finagle-core_2.11"       % "6.24.0",
+    "com.twitter"              % "finagle-stream_2.11"     % "6.24.0",
+    "com.twitter"              % "finagle-http_2.11"       % "6.24.0",
+    "org.twitter4j"            % "twitter4j-core"          % "4.0.2"
   )
 }
 

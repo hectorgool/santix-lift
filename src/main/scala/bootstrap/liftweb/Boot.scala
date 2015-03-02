@@ -80,7 +80,7 @@ class Boot {
 
     //by santo
     LiftRules.responseTransformers.append {
-      case r if r.toResponse.code == 403 => RedirectResponse("/403.html")
+      case r if r.toResponse.code == 403 => RedirectResponse("403")
       case r => r
     }
 

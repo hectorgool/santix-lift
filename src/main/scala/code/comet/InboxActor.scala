@@ -2,6 +2,8 @@ package code
 package comet
 
 
+import lib._
+import model._
 import net.liftweb._
 import actor.LiftActor
 import common._
@@ -9,8 +11,6 @@ import common.Full
 import http.NamedCometListener
 import util.Schedule
 import util.Helpers._
-import lib._
-import model._
 
 
 object InboxActor extends LiftActor with Logger{

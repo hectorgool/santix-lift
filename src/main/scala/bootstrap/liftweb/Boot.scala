@@ -11,7 +11,7 @@ import Loc._
 import net.liftmodules.JQueryModule
 import net.liftweb.http.js.jquery._
 
-import code.config._
+import code.config.MongoConfig
 
 /**
  * A class that's instantiated early and run.  It allows the application
@@ -29,23 +29,23 @@ class Boot {
     LiftRules.addToPackages("code")
 
     // Build SiteMap
-    /*
+    
     val entries = List(
       Menu.i("Home") / "index",
       Menu(Loc("Static", Link(List("static"), true, "/static/index"),
 	       "Static Content"))
       )
-    */
+    
 
     // set the default htmlProperties
     LiftRules.htmlProperties.default.set((r: Req) => new Html5Properties(r.userAgent))
 
     // Build SiteMap
-    LiftRules.setSiteMap(Site.siteMap)
+    //LiftRules.setSiteMap(Site.siteMap)
 
     // set the sitemap.  Note if you don't want access control for
     // each page, just comment this line out.
-    //LiftRules.setSiteMap(SiteMap(entries:_*))
+    LiftRules.setSiteMap(SiteMap(entries:_*))
 
     //Show the spinny image when an Ajax call starts
     LiftRules.ajaxStart =

@@ -38,7 +38,8 @@ libraryDependencies ++= {
     "com.twitter"              % "finagle-core_2.11"       % "6.24.0",
     "com.twitter"              % "finagle-stream_2.11"     % "6.24.0",
     "com.twitter"              % "finagle-http_2.11"       % "6.24.0",
-    "org.twitter4j"            % "twitter4j-core"          % "4.0.2"
+    "org.twitter4j"            % "twitter4j-core"          % "4.0.2",
+    "de.weltraumschaf"         % "speakingurl"             % "1.0.0"
   )
 }
 

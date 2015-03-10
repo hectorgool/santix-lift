@@ -20,7 +20,7 @@ import js.{JsCmd}
 import js.JsCmds.{Noop}
 
 
-class ViewUserItem( userItem: ( UserNameParam, ItemSlugParam ) ) extends UserHelper with Loggable{
+class ViewUserItem( userItem: ( User, Items ) ) extends UserHelper with Loggable{
 
 
 	private var name = ""
@@ -32,16 +32,16 @@ class ViewUserItem( userItem: ( UserNameParam, ItemSlugParam ) ) extends UserHel
   	private val fmt = DateTimeFormat.forPattern("dd MMMM yy, HH:mm:ss")
   	private val slugger = Slug.Builder.newBuiler().create();//slug object
 
-	def render = <div>param: {userItem._1.userNameParam}</div>
+	def render = <div>param: {userItem._1.username.get}</div>
 
 	def view = {
 
 		//println("userItem._2.itemSlug: " + userItem._2.itemSlug )
 
-		Items.findSlug( userItem._2.itemSlugParam ) match{
+		Items.findSlug( userItem._2.slug.get ) match{
 
 		    case Full(item) if item.activate.get == true => {
-		    	"#username"	    	   #> userItem._1.userNameParam & 	
+		    	"#username"	    	   #> userItem._1.username.get & 	
 		    	"title *"              #> item.name &
 		    	"img [alt]"            #> item.name &
 	    		"#name"                #> item.name &
@@ -64,7 +64,7 @@ class ViewUserItem( userItem: ( UserNameParam, ItemSlugParam ) ) extends UserHel
 
 	def adminView = {
 
-		Items.findSlug( userItem._2.itemSlugParam ) match{		
+		Items.findSlug( userItem._2.slug.get ) match{		
 
 		    case Full(item) => {			    	    	
 		    	"title *"      #> item.name &
@@ -113,18 +113,21 @@ class ViewUserItem( userItem: ( UserNameParam, ItemSlugParam ) ) extends UserHel
 object ViewUserItem{
  
 
-	val menu = Menu.params[( UserNameParam, ItemSlugParam )]("User Id", "Post Id",
-  	{
-    	case uid :: pid :: Nil =>
-      		(UserNameParam(uid), ItemSlugParam(pid)) match {
-        		case ( (user), (post)) => Full((user, post))
-        		case _ => Empty
-      		}
-    	case _ =>
-      		Empty
-  	},
-  	ft => List(ft._1.userNameParam.toString,ft._2.itemSlugParam.toString)) / * / *
-  	lazy val loc = menu.toLoc
+ 	val menu = Menu.params[(User, Items)]("User Slug", "User Slug",
+	{
+		case username :: slug :: Nil => 
+			for {
+				u <- User.findByUsername(username)
+				i <- Items.findBySlug(slug)
+			} yield (u, i)		
+		case _ => 
+			Empty
+	}, 
+	{
+		case (u, i) => 
+			u.username.get.toString :: i.slug.get.toString :: Nil 
+	}		
+	) / * / *
 
 
 }

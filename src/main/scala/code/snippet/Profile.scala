@@ -21,30 +21,6 @@ import js.JE._
 import net.liftweb.json._
 
 
-object Profile{
-  
-
-  	val profileParamMenu = Menu.param[User]("User", "Profile", 
-    	User.findByUsername _, _.username.get
-    ) / *
-
-  	lazy val profileLoc = profileParamMenu.toLoc
-
-  	def username = User.currentUser match {
-
-		case Full(user) if user.verified == true => {		    
-	    	"#username * *"        #> user.username &
-	    	"a #username [href]" #> "/%s".format( user.username )
-		}
-		case _ => {
-			S.redirectTo("/login")
-		}
-
-	}
-  
-
-}
-
 class Profile( unParam: User ) extends StatefulSnippet with Logger{
 
 
@@ -97,5 +73,36 @@ class Profile( unParam: User ) extends StatefulSnippet with Logger{
 
 	}
 
+
+}
+
+
+object Profile{
+  
+
+	val profileParamMenu = Menu.params[User]("Profile", "Profile", { 
+        case username :: Nil => 
+ 			for {
+				u <- User.findByUsername(username)
+			} yield u
+        case _ => 
+            Empty 
+    }, { 
+    	case u => u.username.toString :: Nil 
+    }
+    ) / *
+
+  	def username = User.currentUser match {
+
+		case Full(user) if user.verified == true => {		    
+	    	"#username * *"        #> user.username &
+	    	"a #username [href]" #> "/%s".format( user.username )
+		}
+		case _ => {
+			S.redirectTo("/login")
+		}
+
+	}
+  
 
 }

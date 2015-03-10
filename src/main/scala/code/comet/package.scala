@@ -34,12 +34,5 @@ package object comet{
 
   case class ErrorMessage( error:String, message:String )
 
-  //beta
-  case class UserNameParam( userNameParam: String )
-  case class ItemSlugParam( itemSlugParam: String )
-  //case class UserParam( userId: String )
-  //case class PostParam( postId: String )
-
-
 
 }

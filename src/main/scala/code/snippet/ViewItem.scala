@@ -109,28 +109,13 @@ class ViewItem( itemParam: Items ) extends UserHelper with Loggable{
 
 object ViewItem{
   
-  /*	
-	val viewItemParam = Menu.param[Items]("View Item", "view-item", 
-    	Items.findSlug _, _.slug.get 
-    ) / "item" / *
-
-  	val picsItemParam = Menu.param[Items]("View Item Pics", "view-item-pics", 
-    	//Items.findSlug _, _.slug.get 
-    	Items.findSlug match {
-    		case Full(item) =>
-    			item.slug.get
-    		case _ => 
-    			Text(S.?("document.not.found"))
-    	}
-    ) / "item" / * / "pics" 
-*/
 
 	val viewItemParam = Menu.params[Items]("View Item", "View Item", { 
         case i :: Nil => 
             Items.findSlug(i) 
         case _ => 
             Empty 
-    }, { case i => i.slug.toString :: Nil }
+    	}, { case i => i.slug.toString :: Nil }
     ) / "item" / *
 	
 	val picsItemParam = Menu.params[Items]("View Item Pics", "View Item Pics", { 
@@ -138,7 +123,7 @@ object ViewItem{
             Items.findSlug(i) 
         case _ => 
             Empty 
-    }, { case i => i.slug.toString :: Nil }
+    	}, { case i => i.slug.toString :: Nil }
     ) / "item" / * / "pics" 
   
 

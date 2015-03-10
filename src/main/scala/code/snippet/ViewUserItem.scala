@@ -20,7 +20,7 @@ import js.{JsCmd}
 import js.JsCmds.{Noop}
 
 
-class ViewItem( itemParam: Items ) extends UserHelper with Loggable{
+class ViewUserItem( userItem: ( UserNameParam, ItemSlugParam ) ) extends UserHelper with Loggable{
 
 
 	private var name = ""
@@ -32,13 +32,16 @@ class ViewItem( itemParam: Items ) extends UserHelper with Loggable{
   	private val fmt = DateTimeFormat.forPattern("dd MMMM yy, HH:mm:ss")
   	private val slugger = Slug.Builder.newBuiler().create();//slug object
 
-	def render = <div>param: {itemParam.slug}</div>
+	def render = <div>param: {userItem._1.userNameParam}</div>
 
 	def view = {
 
-		Items.findSlug( itemParam.slug.get ) match{		
+		//println("userItem._2.itemSlug: " + userItem._2.itemSlug )
 
-		    case Full(item) if item.activate.get == true => {			    	    	
+		Items.findSlug( userItem._2.itemSlugParam ) match{
+
+		    case Full(item) if item.activate.get == true => {
+		    	"#username"	    	   #> userItem._1.userNameParam & 	
 		    	"title *"              #> item.name &
 		    	"img [alt]"            #> item.name &
 	    		"#name"                #> item.name &
@@ -61,7 +64,7 @@ class ViewItem( itemParam: Items ) extends UserHelper with Loggable{
 
 	def adminView = {
 
-		Items.findSlug( itemParam.slug.get ) match{		
+		Items.findSlug( userItem._2.itemSlugParam ) match{		
 
 		    case Full(item) => {			    	    	
 		    	"title *"      #> item.name &
@@ -107,39 +110,21 @@ class ViewItem( itemParam: Items ) extends UserHelper with Loggable{
 }
 
 
-object ViewItem{
-  
-  /*	
-	val viewItemParam = Menu.param[Items]("View Item", "view-item", 
-    	Items.findSlug _, _.slug.get 
-    ) / "item" / *
+object ViewUserItem{
+ 
 
-  	val picsItemParam = Menu.param[Items]("View Item Pics", "view-item-pics", 
-    	//Items.findSlug _, _.slug.get 
-    	Items.findSlug match {
-    		case Full(item) =>
-    			item.slug.get
-    		case _ => 
-    			Text(S.?("document.not.found"))
-    	}
-    ) / "item" / * / "pics" 
-*/
+	val menu = Menu.params[( UserNameParam, ItemSlugParam )]("User Id", "Post Id",
+  	{
+    	case uid :: pid :: Nil =>
+      		(UserNameParam(uid), ItemSlugParam(pid)) match {
+        		case ( (user), (post)) => Full((user, post))
+        		case _ => Empty
+      		}
+    	case _ =>
+      		Empty
+  	},
+  	ft => List(ft._1.userNameParam.toString,ft._2.itemSlugParam.toString)) / * / *
+  	lazy val loc = menu.toLoc
 
-	val viewItemParam = Menu.params[Items]("View Item", "View Item", { 
-        case i :: Nil => 
-            Items.findSlug(i) 
-        case _ => 
-            Empty 
-    }, { case i => i.slug.toString :: Nil }
-    ) / "item" / *
-	
-	val picsItemParam = Menu.params[Items]("View Item Pics", "View Item Pics", { 
-        case i :: Nil => 
-            Items.findSlug(i) 
-        case _ => 
-            Empty 
-    }, { case i => i.slug.toString :: Nil }
-    ) / "item" / * / "pics" 
-  
 
 }

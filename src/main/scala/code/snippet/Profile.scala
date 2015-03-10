@@ -84,7 +84,8 @@ class Profile( unParam: User ) extends StatefulSnippet with Logger{
 			//"#addToCart [onclick]" #> SHtml.ajaxInvoke(() => TheCart.addToCart( item )) &
 	        "#name *"              #> item.name &
 	        "img [alt]"            #> item.name &
-	        "a [href]"             #> "/item/%s".format(item.slug) &
+	        //"a [href]"             #> "/item/%s".format(item.slug) &
+	        "a [href]"             #> "/%s/%s".format( unParam.username, item.slug ) &
 	        "#price *"             #> item.price.toString &
 	        "#description *"       #> item.description //&
 	        //"#twitter *"     #> item.id &

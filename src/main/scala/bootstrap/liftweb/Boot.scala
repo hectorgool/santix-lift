@@ -53,10 +53,6 @@ class Boot extends Loggable with Locs{
     // checks for ExtSession cookie    
     LiftRules.earlyInStateful.append(User.testForExtSession)
 
-    def ifIsLoggedIn = If(User.isLoggedIn _, strFuncToFailMsg(() => S.?("not.login")))
-
-    //>> If(() => S.loggedIn_?, () => RedirectResponse("/login"))
-
     // Build SiteMap
     val entries = List(
       Menu.i("Home") /("index"), // the simple way to declare a menu
@@ -76,7 +72,7 @@ class Boot extends Loggable with Locs{
       Menu.i("Admin Items") / "admin" / "item" / "index",
       Menu.i("Admin Users") / "admin" / "users" / "index",
       Menu.i("Item List") / "item" / "index",
-      Menu.i("Item Create") / "item" / "create",
+      Menu.i("Item Create") / "item" / "create" >> RequireLoggedIn,
       Menu.i("Item Edit") / "item" / "edit",
       Menu.i("Item Lists") / "item" / "list",
       Menu.i("Item View") / "item" / "view",
@@ -87,7 +83,8 @@ class Boot extends Loggable with Locs{
       Menu.i("Throw") / "throw" >> Hidden >> EarlyResponse(() => throw new Exception("This is only a test.")),
       Profile.profileParamMenu,
       ViewItem.viewItemParam,
-      ViewItem.picsItemParam
+      ViewItem.picsItemParam,
+      ViewUserItem.menu
     )
 
     // set the sitemap.  Note if you don't want access control for
@@ -111,7 +108,7 @@ class Boot extends Loggable with Locs{
 
     //Init the jQuery module, see http://liftweb.net/jquery for more information.
     LiftRules.jsArtifacts = JQueryArtifacts
-    JQueryModule.InitParam.JQuery=JQueryModule.JQuery172
+    JQueryModule.InitParam.JQuery=JQueryModule.JQuery191
     JQueryModule.init()
 
     //by santo
@@ -137,11 +134,13 @@ class Boot extends Loggable with Locs{
 
     //beta
     //by santo
+    /*
     LiftRules.exceptionHandler.prepend {
       case (runMode, request, exception) =>
         logger.error("Boom! At "+request.uri)
         InternalServerErrorResponse()
     }
+    */
 
     //You want to ensure clients are using HTTPS.
     /*

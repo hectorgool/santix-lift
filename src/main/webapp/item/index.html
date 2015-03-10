@@ -1,0 +1,385 @@
+<div id="main" class="lift:surround?with=default;at=content">
+
+  <div data-lift="embed?what=templates-hidden/_navbar"></div>
+
+	<div class="container-fluid">
+
+
+    <div class="row">
+        <div class="col-md-6">
+            <h1>
+                <span data-lift="Loc.i">items.index.manage_items</span>
+            </h1>
+        </div>
+
+        <div class="col-md-6">
+            <div class="pull-right">
+                <a href="/items/create" type="button" class="btn btn-default btn-lg">
+                    <span class="glyphicon glyphicon-plus"></span> <span data-lift="Loc.i">items.index.add_a_item</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    
+
+		<div class="row">
+		    <div class="col-md-6">
+
+                <div class="input-group input-group-lg">
+
+                    <input type="text" class="form-control input-lg" placeholder="Search a item...">
+
+                    <span class="input-group-btn">
+                        <button class="btn btn-default btn-lg" type="button">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+
+                </div>
+
+            </div>
+		    <div class="col-md-6">
+                <div class="pull-right">
+                    <button type="button" class="btn btn-default btn-lg">
+                        <span data-lift="Loc.i">items.index.csv</span>
+                    </button>
+                    <button type="button" class="btn btn-default btn-lg">
+                        <span data-lift="Loc.i">items.index.excell</span>
+                    </button>
+                    <button type="button" class="btn btn-default btn-lg">
+                        <span data-lift="Loc.i">items.index.pdf</span>
+                    </button>
+                    <button type="button" class="btn btn-default btn-lg">
+                        <span data-lift="Loc.i">items.index.print</span>
+                    </button>
+                </div>
+            </div>
+		</div>
+
+    <hr>
+
+
+
+<div class="container">
+
+    <h2>Mobile-Friendly API Documentation</h2>
+    <p class="lead">
+        Emulate tables that collapse beautifully on mobile devices!
+    </p>
+    
+    <div class="alert alert-info">
+        <h4>Row modifier class included</h4>
+        <p>This feature uses a row modifier I created called ".margin-0". When applied to a ".row" element, it will ensure the margins between the columns will be 0. </p>
+        <p>This is important in order to emulate the table-like effect, but it will work in any environment.</p>
+    </div>
+
+    <hr />
+
+    <div class="method">
+        <div class="row margin-0 list-header hidden-sm hidden-xs">
+            <div class="col-md-3"><div class="header">Property</div></div>
+            <div class="col-md-2"><div class="header">Type</div></div>
+            <div class="col-md-2"><div class="header">Required</div></div>
+            <div class="col-md-5"><div class="header">Description</div></div>
+        </div>
+
+        <div class="row margin-0">
+            <div class="col-md-3">
+                <div class="cell">
+                    <div class="propertyname">
+                        CurrencyCode  <span class="mobile-isrequired">[Required]</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="cell">
+                    <div class="type">
+                        <code>String</code>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="cell">
+                    <div class="isrequired">
+                        Yes
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="cell">
+                    <div class="description">
+                        The standard ISO 4217 3-letter currency code
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row margin-0">
+            <div class="col-md-3">
+                <div class="cell">
+                    <div class="propertyname">
+                        PriceType  <span class="mobile-isrequired">[Required]</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="cell">
+                    <div class="type">
+                        <code>Int32</code>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="cell">
+                    <div class="isrequired">
+                        Yes
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="cell">
+                    <div class="description">
+                        The type of price
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row margin-0">
+            <div class="col-md-3">
+                <div class="cell">
+                    <div class="propertyname">
+                        WarehouseID  <span class="mobile-isrequired">[Required]</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="cell">
+                    <div class="type">
+                        <code>Int32</code>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="cell">
+                    <div class="isrequired">
+                        Yes
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="cell">
+                    <div class="description">
+                        The unique identifier for the warehouse
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row margin-0">
+            <div class="col-md-3">
+                <div class="cell">
+                    <div class="propertyname">
+                        ItemCodes
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="cell">
+                    <div class="type">
+                        <code>String[]</code>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="cell">
+                    <div class="isrequired">
+                        <span class="text-muted">No</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="cell">
+                    <div class="description">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row margin-0">
+            <div class="col-md-3">
+                <div class="cell">
+                    <div class="propertyname">
+                        LanguageID
+                        <a class="lookuplink" href="javascript:;">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="cell">
+                    <div class="type">
+                        <code>Int32?</code>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="cell">
+                    <div class="isrequired">
+                        <span class="text-muted">No</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="cell">
+                    <div class="description">
+                        The customer's preferred language ID (ex. 0 (English), 1 (Spanish), etc.)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--
+		<div class="table-responsive">
+
+			<table class="table table-striped table-condensed">
+
+				<thead>
+					<tr>
+   					<th>
+              <span data-lift="Loc.i">items.index.id</span>
+            </th>  
+   					<th>
+              <span data-lift="Loc.i">items.index.item</span>
+            </th>
+   					<th>
+              <span data-lift="Loc.i">items.index.reference</span>
+            </th>
+   					<th>
+              <span data-lift="Loc.i">items.index.category</span>
+            </th>
+   					<th>
+              <span data-lift="Loc.i">items.index.price</span>
+            </th>
+   					<th>
+              <span data-lift="Loc.i">items.index.date_added</span>
+            </th>
+   					<th>
+              <span data-lift="Loc.i">items.index.stock</span>
+            </th>
+   					<th>
+              <span data-lift="Loc.i">items.index.sales</span>
+            </th>
+   					<th>
+              <span data-lift="Loc.i">items.index.status</span>
+            </th>
+   					<th>
+              <span data-lift="Loc.i">items.index.actions</span>
+            </th>
+					</tr>
+				</thead>
+
+				<tbody>
+
+        <tr data-lift="items.ViewProducts.admin">
+
+          <td id="id">
+            n
+          </td>
+
+          <td>
+            <a id="name" href="#"></a>
+          </td>
+
+          <td>
+            x
+          </td>
+
+          <td>
+            x
+          </td>
+
+          <td class="text-right" id="price">                
+          </td>
+
+          <td class="text-right" id="timecreated">
+          </td>
+
+          <td>
+            x
+          </td>
+
+          <td>
+            x
+          </td>
+
+          <td>
+            x
+          </td>
+
+          <td class="text-center">  
+
+            <button type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-eye-open"></span>
+            </button>
+
+            <button type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+
+            <button type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-trash"></span>
+            </button>
+
+          </td>
+
+        </tr>
+
+				</tbody>
+
+	  		<tfoot>
+          <tr>
+              <th>
+                  <span data-lift="Loc.i">items.index.id</span>
+              </th>
+              <th>
+                  <span data-lift="Loc.i">items.index.item</span>
+              </th>
+              <th>
+                  <span data-lift="Loc.i">items.index.reference</span>
+              </th>
+              <th>
+                  <span data-lift="Loc.i">items.index.category</span>
+              </th>
+              <th>
+                  <span data-lift="Loc.i">items.index.price</span>
+              </th>
+              <th>
+                  <span data-lift="Loc.i">items.index.date_added</span>
+              </th>
+              <th>
+                  <span data-lift="Loc.i">items.index.stock</span>
+              </th>
+              <th>
+                  <span data-lift="Loc.i">items.index.sales</span>
+              </th>
+              <th>
+                  <span data-lift="Loc.i">items.index.status</span>
+              </th>
+              <th>
+                  <span data-lift="Loc.i">items.index.actions</span>
+              </th>
+          </tr>
+	 		  </tfoot> 				
+  		
+			</table>
+
+		</div>
+    -->
+
+	</div>
+
+</div>	

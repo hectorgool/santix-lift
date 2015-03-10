@@ -39,8 +39,8 @@ class CreateItem extends StatefulSnippet with UserHelper with Loggable{
 
 	def add = User.currentUser match {
 
-		case Full(user) if user.verified == true => {
-
+		//case Full(user) if user.verified == true => {			
+		case Full(user) => {
 			def process() : JsCmd = {
 
 				implicit val formats = DefaultFormats
@@ -107,8 +107,9 @@ class CreateItem extends StatefulSnippet with UserHelper with Loggable{
 		}
 
 		case _ => {
-			//Text("error")
+
 			S.redirectTo("/login")
+
 		}
 
 	}

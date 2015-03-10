@@ -8,6 +8,7 @@ import net.liftweb.json._
 
 package object comet{
 
+
   case class Username( t:String )
 
   case class Term( t:String )
@@ -32,5 +33,13 @@ package object comet{
   case class Ping()
 
   case class ErrorMessage( error:String, message:String )
+
+  //beta
+  case class UserNameParam( userNameParam: String )
+  case class ItemSlugParam( itemSlugParam: String )
+  //case class UserParam( userId: String )
+  //case class PostParam( postId: String )
+
+
 
 }

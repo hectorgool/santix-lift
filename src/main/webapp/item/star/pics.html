@@ -15,52 +15,47 @@
 		<title data-lift="head">Product Name</title>		
 
 		<!--start:search-->
+		<span lift="embed?what=/templates-hidden/_search"> </span>
+		<!--end:search-->
+
+		<!--start:nav_buttons-->
+		<span lift="embed?what=/templates-hidden/_nav_buttons"> </span>
+		<!--end:nav_buttons-->
+
 		<div id="row">
 			<div class="col-md-12">
 				<p>
-					<div class="input-group">
-						<input class="form-control input-lg" type="text" placeholder="Search item">
-						<span class="input-group-addon btn-white">
-							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-						</span>
+					<div class="center-block">
+							
+						<ul class="bxslider" data-call="bxslider" data-options="slideMargin:5, autoReload:true" data-breaks="[{screen:0, slides:1, pager:false}, {screen:460, slides:2}, {screen: 768, slides:3}]">
+							<li>
+								<img src="/classpath/assets/img/django.jpg" 
+									class="img-responsive" 
+									title="Funky roots"
+									alt="Responsive image" />
+							</li>
+						  	<li>
+						  		<img src="/classpath/assets/img/lift.jpg" 
+						  			class="img-responsive" 
+						  			title="Funky roots"
+						  			alt="Responsive image" />
+						  	</li>
+						  	<li>
+						  		<img src="/classpath/assets/img/scala.jpg" 
+						  			class="img-responsive" 
+						  			title="Funky roots"
+						  			alt="Responsive image" />
+						  	</li>
+						  	<li>
+						  		<img src="/classpath/assets/img/angularjs.jpg" 
+						  			class="img-responsive" 
+						  			title="Funky roots"
+						  			alt="Responsive image" />
+						  	</li>					  	
+						</ul>					
+
 					</div>
 				</p>
-			</div>
-		</div>
-		<!--end:search-->
-
-		<div id="row">
-			<div class="col-md-12">
-				<div class="center-block">
-						
-					<ul class="bxslider" data-call="bxslider" data-options="slideMargin:5, autoReload:true" data-breaks="[{screen:0, slides:1, pager:false}, {screen:460, slides:2}, {screen: 768, slides:3}]">
-						<li>
-							<img src="/classpath/assets/img/django.jpg" 
-								class="img-responsive" 
-								title="Funky roots"
-								alt="Responsive image" />
-						</li>
-					  	<li>
-					  		<img src="/classpath/assets/img/lift.jpg" 
-					  			class="img-responsive" 
-					  			title="Funky roots"
-					  			alt="Responsive image" />
-					  	</li>
-					  	<li>
-					  		<img src="/classpath/assets/img/scala.jpg" 
-					  			class="img-responsive" 
-					  			title="Funky roots"
-					  			alt="Responsive image" />
-					  	</li>
-					  	<li>
-					  		<img src="/classpath/assets/img/angularjs.jpg" 
-					  			class="img-responsive" 
-					  			title="Funky roots"
-					  			alt="Responsive image" />
-					  	</li>					  	
-					</ul>					
-
-				</div>
 			</div>
 		</div>			
 

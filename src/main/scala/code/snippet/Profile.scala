@@ -78,8 +78,14 @@ class Profile( unParam: User ) extends StatefulSnippet with Logger{
 
 
 object Profile{
-  
 
+  
+    /*
+ 	val profileParamMenu = Menu.param[User]("User", "Profile", 
+    	User.findByUsername _, _.username.get
+    ) / *
+    */
+	
 	val profileParamMenu = Menu.params[User]("Profile", "Profile", { 
         case username :: Nil => 
  			for {
@@ -91,7 +97,7 @@ object Profile{
     	case u => u.username.toString :: Nil 
     }
     ) / *
-
+    
   	def username = User.currentUser match {
 
 		case Full(user) if user.verified == true => {		    

@@ -14,7 +14,6 @@ import net.liftweb.http.js.jquery._
 import code.lib._
 import code.model._
 import code.snippet._
-//import code.snippet.products._
 
 import net.liftmodules.mongoauth.MongoAuth
 import net.liftmodules.mongoauth.Locs
@@ -127,21 +126,28 @@ class Boot extends Loggable with Locs{
     })
 
     //by santo
+    //beta
+    def my403 : Box[LiftResponse] =
+      for {
+        session <- S.session
+        req <- S.request
+        template = Templates("403" :: Nil)
+        response <- session.processTemplate(template, req, req.path, 403)
+      } yield response
+
     LiftRules.responseTransformers.append {
-      case r if r.toResponse.code == 403 => RedirectResponse("/403.html")
-      case r => r
+      case resp if resp.toResponse.code == 403 => my403 openOr resp
+      case resp => resp
     }
 
     //beta
-    //by santo
-    /*
+    //by santo    
     LiftRules.exceptionHandler.prepend {
       case (runMode, request, exception) =>
         logger.error("Boom! At "+request.uri)
         InternalServerErrorResponse()
     }
-    */
-
+    
     //You want to ensure clients are using HTTPS.
     /*
     LiftRules.earlyResponse.append { (req: Req) =>

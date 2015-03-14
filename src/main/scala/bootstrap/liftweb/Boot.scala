@@ -141,12 +141,14 @@ class Boot extends Loggable with Locs{
     }
 
     //beta
-    //by santo    
+    //by santo
+    /*   
     LiftRules.exceptionHandler.prepend {
       case (runMode, request, exception) =>
         logger.error("Boom! At "+request.uri)
         InternalServerErrorResponse()
     }
+    */
     
     //You want to ensure clients are using HTTPS.
     /*

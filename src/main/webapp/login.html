@@ -49,7 +49,7 @@
                                         </label>
                                         <input class="form-control input-lg" placeholder="Password" name="password" type="password">
                                     </div>
-                                    
+                                    <!--
                                     <div class="checkbox">
                                         <label>
                                             <input id="remember" name="remember" type="checkbox"> <span data-lift="Loc.i">login.remember-me.label</span>
@@ -60,7 +60,21 @@
                                         <a href="/lost-password">
                                             <span data-lift="Loc.i">login.forgot-password.label</span>
                                         </a>
-                                    </label>                                    
+                                    </label>
+                                    -->                                    
+
+                                    <span class="button-checkbox">
+
+                                        <label>
+                                            <input id="remember" name="remember" type="checkbox"> <span data-lift="Loc.i">login.remember-me.label</span>
+                                        </label>
+
+                                        <input type="checkbox" name="remember_me" id="remember_me" checked="checked" class="hidden">
+                                        <a href="" class="btn btn-link pull-right">
+                                            <span data-lift="Loc.i">login.forgot-password.label</span>
+                                        </a>
+
+                                    </span>
 
                                     <button name="login" class="btn btn-lg btn-white btn-block">
                                         <span data-lift="Loc.i">login.button</span>
@@ -72,7 +86,7 @@
 
                         </form>
 
-                        <hr>
+                        <!--<hr>-->
                         <!--
                         <p>
                             <span data-lift="Loc.i">home.need.account</span>

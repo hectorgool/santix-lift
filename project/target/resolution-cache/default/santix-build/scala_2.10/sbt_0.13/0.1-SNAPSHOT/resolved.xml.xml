@@ -4,7 +4,7 @@
 		module="santix-build"
 		revision="0.1-SNAPSHOT"
 		status="integration"
-		publication="20150226142343"
+		publication="20150314141627"
 		e:scalaVersion="2.10" e:sbtVersion="0.13"
 	>
 		<description>

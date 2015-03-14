@@ -70,11 +70,9 @@ class CreateItem extends StatefulSnippet with UserHelper with Loggable{
 
 			        case Nil =>
 			        	val newItem : Items = item.save() //save new user in database
-			          	//logger.info("\n Nil ~~> !\n")//depurar
 			          	logger.info("\n newItem ~~> "+ newItem +"!\n")//depurar
 			          	indexItem( item, user ) //index item in Elasticsearch
 			          	S.redirectTo("/admin")
-			          	Templates( "templates-hidden" :: "admin" :: "items" :: Nil ).map(ns => SetHtml("admin-content", ns)) openOr Noop //beta
 			          	Noop
 
 			        case errors : List[FieldError] =>

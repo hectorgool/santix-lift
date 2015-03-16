@@ -52,8 +52,7 @@ class ElasticSearchComet extends NamedCometActorTrait{
             <div class="description">
             </div>
           </div>
-        </div>        
-        <hr/>
+        </div>
 
       </div>
 

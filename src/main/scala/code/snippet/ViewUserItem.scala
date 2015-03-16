@@ -36,12 +36,11 @@ class ViewUserItem( userItem: ( User, Items ) ) extends UserHelper with Loggable
 
 	def view = {
 
-		//println("userItem._2.itemSlug: " + userItem._2.itemSlug )
-
 		Items.findSlug( userItem._2.slug.get ) match{
 
 		    case Full(item) if item.activate.get == true => {
-		    	"#username"	    	   #> userItem._1.username.get & 	
+		    	"a #username *"	       #> "@%s".format(userItem._1.username.get) &
+		    	"a #username [href]"   #> "/%s".format(userItem._1.username.get) &
 		    	"title *"              #> item.name &
 		    	"img [alt]"            #> item.name &
 	    		"#name"                #> item.name &

@@ -1,0 +1,16 @@
+body { padding-bottom: 70px; }
+
+.space-top {
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+//.center-block {float: none !important}
+
+
+// Classes
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

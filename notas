@@ -1,0 +1,9 @@
+
+para borrar archivos de git:
+git rm -r --cached target/*
+http://stackoverflow.com/questions/1054044/unable-to-remove-files-recursively-from-git
+
+
+creación de archivo git ignore:
+https://github.com/fmpwizard/lift_starter_2.4/blob/master/.gitignore
+

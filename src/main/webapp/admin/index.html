@@ -1,0 +1,60 @@
+<div id="main" class="lift:surround?with=default;at=content">
+
+
+    <span lift="TestCond.loggedin">
+
+        <!-- Fixed navbar -->
+        <div data-lift="embed?what=templates-hidden/_navbar"></div>
+
+        <div class="container-fluid">
+
+            <div class="row">
+
+                <div data-lift="TemplatesLoader">
+
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li role="presentation">
+                                        <button id="panel" class="btn btn-default btn-lg btn-block">Admin Panel</button>
+                                    </li>                                    
+                                    <li role="presentation">
+                                        <button id="items" class="btn btn-default btn-lg btn-block">Items</button>
+                                    </li>
+
+                                    <li role="presentation">
+                                        <button id="users" class="btn btn-default btn-lg btn-block">Users</button>
+                                    </li>
+                                    
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+
+                                <div id="admin-content">
+
+                                    <div data-lift="embed?what=templates-hidden/admin/index"></div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </span>
+
+
+</div>

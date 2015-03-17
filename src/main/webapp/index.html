@@ -1,17 +1,86 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Home</title>
-</head>
-<body data-lift-content-id="main">
-  <div id="main" data-lift="surround?with=default;at=content">
-    <h2>Welcome to your project!</h2>
-    <p>
-     <span data-lift="helloWorld.howdy">
-       Welcome to your Lift app at <span id="time">Time goes here</span>
-     </span>
-   </p>
- </div>
-</body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SANTIX</title>
+  </head>
+
+  <body class="lift:content_id=main">
+
+    <div id="main" class="lift:surround?with=default;at=content">
+
+
+      <div class="container-fluid">
+
+        <span lift="embed?what=/templates-hidden/_navbar"> </span>
+
+        <!--start:search-->        
+          <div data-lift="embed?what=templates-hidden/_search"></div>  
+        <!--end:search-->
+        
+          <div data-lift="AddResultComet">
+
+            <div id="row">
+              <div class="col-md-12">
+                <div id="contenido">
+              
+                  <a href="/santo">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                  </a>
+
+                  </div>
+                </div>
+              </div>
+          </div>
+         
+          
+          <!--
+          <div class="lift:comet?type=CometCart">
+
+            Cart:
+            
+            <table id="contents" class="table">
+              <tbody id="contents_tbody">
+                <tr>
+                  <td name="name">an item</td>
+                  <td name="qnty">3</td>
+                  <td>
+                    <button name="del">x</button>
+                    <button name="del" class="btn btn-default" type="submit">
+                      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <hr/>
+
+            <div>
+              Subtotal: <span id="subtotal">0</span>
+            </div>
+
+            <div>
+              Tax: <span id="tax">0</span>
+            </div>
+
+            <hr/>
+
+            <div>
+              Total: <span id="total">0</span>
+            </div>
+          </div>
+          -->
+
+        <hr>
+
+      </div>
+
+      <span lift="embed?what=/templates-hidden/_footerbar"> </span>
+      
+    </div>
+
+  </body>
 </html>

@@ -1,0 +1,39 @@
+
+//MySQL
+db.driver=com.mysql.jdbc.Driver
+db.url=jdbc:mysql://localhost/santix
+db.user=hector
+db.password=asdf
+
+site.name=Santix
+site.systemEmail=hectorgool@gmail.com
+site.sysUsername=Santo
+
+mongo.default.host=localhost
+mongo.default.port=27017
+mongo.default.name=santo
+
+//by sanx
+recaptcha.publicKey=6Le1lb4SAAAAAL4-yDrGhZENK4DmZLDi5peHB4B6
+recaptcha.privateKey=6Le1lb4SAAAAAJXXHBc_ebosxBOBIBy8sJUJyIUR
+
+
+//Mailer
+//http://www.assembla.com/spaces/liftweb/wiki/Mailer
+mail.transport.protocol=smtp
+mail.smtp.host=smtp.gmail.com
+mail.smtp.port=587
+mail.smtp.starttls.enable=true
+mail.smtp.auth=true
+mail.user=hectorgool@gmail.com
+mail.password=jezebe1
+
+;configuration
+configuration.system.email=hectorgool@gmail.com
+configuration.system.username=Sanx
+configuration.system.sitename=My Site
+configuration.system.path=/reset-password
+
+;google oauth
+google.client.id=561930068168.apps.googleusercontent.com
+google.client.secret=ZxHs6dFgjcnFS4GAxfhASv5T

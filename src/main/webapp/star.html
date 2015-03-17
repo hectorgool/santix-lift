@@ -1,0 +1,112 @@
+<div id="main" class="lift:surround?with=default;at=content">
+
+	<!--
+    <span lift="TestCond.loggedin">
+    	<div data-lift="embed?what=templates-hidden/_navbar"></div>
+
+		<div class="container-fluid">
+
+			<div data-lift="embed?what=templates-hidden/_nav_buttons"></div>
+
+			<div class="row">
+
+				<div class="col-md-12">
+
+					<h1>
+						User Profile
+					</h1>
+					
+			        <div data-lift="Profile.name">
+			        	<div id="name">
+			        		username
+			        	</div>
+			    	</div>
+
+				</div>
+
+	    	</div>
+
+    	</div>
+
+    </span>
+	-->
+
+
+    <!--<span lift="TestCond.loggedout">-->
+    	
+    	<link data-lift="head" rel="stylesheet" href="/classpath/assets/css/font-awesome.min.css" type="text/css" />
+    	<link data-lift="head" rel="stylesheet" href="/classpath/assets/css/bootstrap-social.css" type="text/css" />
+
+		<div data-lift="embed?what=templates-hidden/_navbar"></div>
+
+    	<div class="container-fluid">
+
+	        <!--start:search-->        
+	        <div data-lift="embed?what=templates-hidden/_search"></div>
+	        <!--end:search-->
+
+			<div class="row">
+
+				<div class="col-md-12">
+
+				<div data-lift="lazy-load" template="templates-hidden/_lazy_load">
+
+		  			<div class="col-md-4" data-lift="Profile.list">
+
+						<div class="panel panel-default">
+
+						  	<div class="panel-body">
+
+						  		<a href="">
+						  			<img src="/classpath/assets/img/scala.jpg" class="img-responsive" alt="Responsive image">
+						  		</a>
+
+						    	<h4 id="name">Title of Image</h4>
+
+								<a href="" type="button" class="btn btn-link">
+									$<span id="price"></span>
+								</a>
+
+								<div class="pull-right">
+	                  				<span data-lift="Loc.i">in.stock</span>
+	                			</div>
+
+								<button id="addToCart" type="button" class="btn btn-white btn-lg btn-block">
+									<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> <span data-lift="Loc.i">add.to.cart</span>
+								</button>
+
+						  	</div>
+
+						  	<div class="panel-footer text-right">
+
+								<span class="glyphicon glyphicon-share" aria-hidden="true"></span> <span data-lift="Loc.i">label.share</span>: 
+
+						  		<a href="#" class="btn btn-social-icon btn-facebook">
+						  			<i class="fa fa-facebook" id="facebook"></i>
+						  		</a>
+						  		<a href="#" class="btn btn-social-icon btn-google-plus">
+						  			<i class="fa fa-google-plus" id="google-plus"></i>
+						  		</a>
+						  		<a href="#" class="btn btn-social-icon btn-pinterest">
+						  			<i class="fa fa-pinterest" id="pinterest"></i></a>
+						  		</a>
+						  		<a href="#" class="btn btn-social-icon btn-twitter">
+						  			<i class="fa fa-twitter" id="twitter"></i></a>
+						  		</a>
+						  	</div>
+
+						</div>
+
+		  			</div>
+
+		  		</div>	
+	  			</div>
+
+			</div>
+			
+		</div>
+
+    <!--</span>-->		
+
+
+</div>	

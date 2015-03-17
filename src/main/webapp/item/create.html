@@ -1,0 +1,171 @@
+<div id="main" class="lift:surround?with=default;at=content">
+
+    <div class="container">
+
+        <!--
+        <span lift="TestCond.loggedout">
+            <div class="lift:App.home"></div>
+        </span>
+        -->
+
+
+        <!--<span lift="TestCond.loggedin">-->
+
+            <!-- Fixed navbar -->
+            <div data-lift="embed?what=templates-hidden/_navbar"></div>
+
+            <div class="container">
+                <div class="row row-centered">
+                    <div class="col-md-6 col-md-offset-3">
+
+                        <h2>
+                            <span data-lift="Loc.i">item.title</span>
+                        </h2>
+
+                        <p>
+                            <span data-lift="Msg?id=createError"></span>
+                        </p>
+
+                        <!--<div class="lift:Msgs?showAll=true"></div>-->
+                        
+                        <form role="form" accept-charset="UTF-8" data-lift="form.ajax" autocomplete="off">
+
+                            <div data-lift="CreateItem.add">
+
+                                <span data-lift="Msg?id=createError"></span>
+
+                                <div class="form-group">
+
+                                    <label for="name">
+                                        <span data-lift="Loc.i">item.name.label</span>
+                                    </label>
+
+                                    <input id="name" name="name" placeholder="Item Name" 
+                                    autofocus="autofocus" 
+                                    class="form-control input-lg">
+                                    <span data-lift="Msg?id=nameError"></span>
+
+                                </div>
+                                
+                                <div class="form-group">
+
+                                    <label for="price">
+                                        <span data-lift="Loc.i">item.price.label</span>
+                                    </label>
+                                
+                                    <input id="price" name="price" placeholder="Item Price" 
+                                    class="form-control input-lg numbersOnly">
+                                    <span id="price_error"></span>
+                                    <span data-lift="Msg?id=priceError"></span>
+
+                                </div>
+                                
+                                <div class="form-group">
+
+                                    <label for="cost">
+                                        <span data-lift="Loc.i">item.cost.label</span>
+                                    </label>
+                                
+                                    <input id="cost" name="cost" placeholder="Item Cost" 
+                                    class="form-control input-lg numbersOnly">
+                                    <span id="cost_error"></span>
+                                    <span data-lift="Msg?id=costError"></span>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="weight">
+                                        <span data-lift="Loc.i">item.weight.label</span>
+                                    </label>
+            
+                                    <input id="weight" name="weight" placeholder="Product Weight" 
+                                    class="form-control input-lg numbersOnly">
+                                    <span id="weight_error"></span>
+                                    <span data-lift="Msg?id=weightError"></span>
+
+                                </div>
+                                    
+                                <div class="form-group">
+
+                                    <label for="description">
+                                        <span data-lift="Loc.i">item.description.label</span>
+                                    </label>
+
+                                    <textarea  
+                                              name="description" 
+                                              class="form-control input-lg" 
+                                              rows="3">
+                                    </textarea>
+                                    <span data-lift="Msg?id=descriptionError"></span>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="reference">
+                                        <span data-lift="Loc.i">item.reference.label</span>
+                                    </label>
+                                
+                                    <input id="reference" name="reference" placeholder="Reference" class="form-control input-lg">
+                                    <span data-lift="Msg?id=referenceError"></span>
+
+                                </div>                
+                                      
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" id="public" name="public">
+                                        <strong><span data-lift="Loc.i">item.public</span></strong>
+                                    </label>
+                                </div>
+
+                                <button type="submit"  class="btn btn-lg btn-default btn-block">
+                                    <span data-lift="Loc.i">item.send</span>
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>      
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title" id="myModalLabel">
+                                    Términos y Condiciones
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>En construcción ...</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default btn-lg btn-block" data-dismiss="modal">
+                                    Estoy de acuerdo.
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </button>
+                            </div>
+
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+
+
+            </div>                    
+
+        <!--</span>-->
+
+    </div>
+
+    <!--<div data-lift="embed?what=templates-hidden/_footer"></div>-->
+
+    <div data-lift="tail">
+        <script data-lift="with-resource-id" src="/classpath/assets/js/santix.js"></script>
+    </div>
+
+</div>

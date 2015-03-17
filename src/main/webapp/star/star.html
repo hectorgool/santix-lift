@@ -1,0 +1,288 @@
+<div id="main" class="lift:surround?with=default;at=content">
+
+
+	<link data-lift="head" rel="stylesheet" href="/classpath/assets/css/font-awesome.min.css" type="text/css" />
+    <link data-lift="head" rel="stylesheet" href="/classpath/assets/css/bootstrap-social.css" type="text/css" />
+    <link data-lift="head" href="/classpath/assets/css/santix.css" rel="stylesheet" />
+	<link data-lift="head" href="/classpath/assets/css/bx_styles/bx_styles.css" rel="stylesheet" />
+
+
+	<span lift="embed?what=/templates-hidden/_navbar"> </span>
+
+	<div data-lift="TemplatesLoader.morePicsButton">
+
+		<div id="contenido">
+
+			<!--<div class="container-fluid" data-lift="items.ViewItem.view">-->
+			<div class="container-fluid" data-lift="ViewUserItem.view">
+
+				<title data-lift="head">Item Name</title>						
+
+
+				<!--start:search-->
+				<span lift="embed?what=/templates-hidden/_search"> </span>
+				<!--end:search-->
+				
+				<!--end:nav_buttons-->
+				<span lift="embed?what=/templates-hidden/_nav_buttons"> </span>
+				<!--end:nav_buttons-->
+
+
+				<div class="col-md-6">
+					<div class="panel panel-default">
+
+						<div class="panel-body">
+
+							<h1>
+								<div id="name"></div> <small><a id="username" href="#">santo</a></small>
+							</h1>					
+
+							<h3>
+								<strong>
+									$ <div id="price"></div> <small>MXN</small>
+								</strong>
+							</h3>
+
+							<dl>
+
+								<dt>
+									<strong>
+										<span data-lift="Loc.i">label.description</span>
+									</strong>
+								</dt>
+
+								<dd>
+									<p id="description">
+										89 hands-on recipes to help you complete real-world data science projects in R and Python
+									</p>
+								</dd>
+
+								<dt>
+									<strong>
+										<span data-lift="Loc.i">label.quantity</span>
+									</strong>
+								</dt>
+
+								<dd>
+									<select class="form-control input-lg">
+										<option>1</option>
+									  	<option>2</option>
+									  	<option>3</option>
+									  	<option>4</option>
+									  	<option>5</option>
+									</select>
+								</dd>
+
+							</dl>
+
+							<button id="addToCart" type="button" class="btn btn-danger btn-lg btn-block">
+								<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+								 <span data-lift="Loc.i">add.to.cart</span>
+							</button>
+
+							<a href="#" id="morepics" type="button" class="btn btn-default btn-lg btn-block">
+								<span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+								 <span data-lift="Loc.i">more.pics</span>
+							</a>
+
+							<button id="askAQuestion" type="button" class="btn btn-default btn-lg btn-block">
+								<span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+								 <span data-lift="Loc.i">label.askAQuestion</span>
+							</button>
+
+							<button id="addToCart" type="button" class="btn btn-default btn-lg btn-block">
+								<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+								 69 <span data-lift="Loc.i">view.comments</span>
+							</button>
+
+							<button id="addToCart" type="button" class="btn btn-default btn-lg btn-block">
+								<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+								3 <span data-lift="Loc.i">add.to.favorites</span>
+							</button>
+
+						</div>
+
+						<div class="panel-footer">
+
+							<span class="glyphicon glyphicon-share" aria-hidden="true"></span> <span data-lift="Loc.i">label.share</span>: 
+					
+							<!--start:bootstrap social-->
+							<a class="btn btn-social-icon btn-lg btn-twitter">
+		    					<i class="fa fa-twitter"></i>
+		  					</a>
+							<a class="btn btn-social-icon btn-lg btn-pinterest">
+		    					<i class="fa fa-pinterest"></i>
+		  					</a>
+							<a class="btn btn-social-icon btn-lg btn-facebook">
+		    					<i class="fa fa-facebook"></i>
+		  					</a>
+							<a class="btn btn-social-icon btn-lg btn-google-plus">
+		    					<i class="fa fa-google-plus"></i>
+		  					</a>
+							<a class="btn btn-social-icon btn-lg btn-tumblr">
+		    					<i class="fa fa-tumblr"></i>
+		  					</a>					
+							<!--end:bootstrap social-->
+
+						</div>
+
+					</div>
+				</div>
+
+
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-body">
+
+							<center>
+								<!-- Button trigger modal -->
+								<div id="modal" href="#" data-toggle="modal" data-target="#images">
+									<img src="/classpath/assets/img/django.jpg" class="img-responsive" alt="Responsive images">
+								</div>
+							</center>
+
+							<!-- Modal -->
+							<div class="modal fade" id="images" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							  	<div class="modal-dialog modal-lg">
+								    <div class="modal-content">
+
+								      	<div class="modal-header">
+								        	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+								        	<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+								      	</div>
+								      	
+								      	<div class="modal-body">
+
+								       		<div class="galleria">
+								       			<img src="" class="img-responsive" alt="Responsive image">
+								       		</div>
+								       		
+								      	</div>
+
+								      	<div class="modal-footer">
+								        	<button type="button" class="btn btn-default" data-dismiss="modal">
+								        		<span data-lift="Loc.i">button.close</span>
+								        	</button>
+								      	</div>
+
+								    </div>
+							  	</div>
+							</div>
+							
+							<!--start:tabs-->
+							<!--
+							<div id="content">
+
+								<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+									<li class="active">
+										<a data-toggle="tab" href="#red">Red</a>
+									</li>
+									<li>
+										<a data-toggle="tab" href="#orange">Orange</a>
+									</li>
+									<li>
+										<a data-toggle="tab" href="#yellow">Yellow</a>
+									</li>
+									<li>
+										<a data-toggle="tab" href="#green">Green</a>
+									</li>
+									<li>
+										<a data-toggle="tab" href="#blue">Blue</a>
+									</li>
+								</ul>
+
+								<div id="my-tab-content" class="tab-content">
+
+									<div id="red" class="tab-pane active">
+										<h3>Red</h3>
+										<p>red red red red red red</p>
+									</div>
+									<div id="orange" class="tab-pane">
+										<h3>Orange</h3>
+										<p>orange orange orange orange orange</p>
+									</div>
+									<div id="yellow" class="tab-pane">
+										<h3>Yellow</h3>
+										<p>yellow yellow yellow yellow yellow</p>
+									</div>
+									<div id="green" class="tab-pane">
+										<h3>Green</h3>
+										<p>green green green green green</p>
+									</div>
+									<div id="blue" class="tab-pane">
+										<h3>Blue</h3>
+										<p>blue blue blue blue blue</p>
+									</div>
+
+								</div>
+
+							</div>
+							-->
+							<!--end:tabs-->
+
+						</div>	
+
+						<!--	
+						<div class="panel-footer">
+							<a href="#" id="pics" type="button" class="btn btn-black btn-lg btn-block">
+								<span class="glyphicon glyphicon-picture" aria-hidden="true"></span> More Pics
+							</a>
+						</div>
+						-->
+
+					</div>
+				</div>	
+
+
+			</div>
+
+		</div>
+
+	</div>		
+
+	<div id="js" data-lift="tail">
+		<!--
+		<script data-lift="with-resource-id" src="/classpath/assets/js/slick.min.js" type="text/javascript"></script>
+		<script data-lift="with-resource-id" src="/classpath/assets/js/app.js" type="text/javascript"></script>
+		-->
+		<!-- jQuery library (served from Google) -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<!-- bxSlider Javascript file -->
+		<script src="/classpath/assets/js/jquery.bxSlider.min.js"></script>
+
+		<!--
+		<script src="/classpath/assets/js/galleria.js"></script>
+
+        <script>
+            Galleria.loadTheme('/classpath/assets/js/themes/classic/galleria.classic.js');
+            Galleria.run('.galleria');
+        </script>
+    	-->
+
+		<script src="/classpath/assets/js/app.js"></script>
+
+		<script>
+  			$(document).ready(function () {
+
+      			$(window).scroll(function () {
+          			if ($(this).scrollTop() > 100) {
+              			$('.scrollup').fadeIn();
+          			} 
+          			else {
+              			$('.scrollup').fadeOut();
+          			}
+      			});
+
+      			$('.scrollup').click(function () {
+          			$("html, body").animate({
+              		scrollTop: 0
+          			}, 600);
+          			return false;
+      			});
+      			
+  			});
+		</script>
+
+	</div>
+
+</div>

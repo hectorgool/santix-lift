@@ -1,0 +1,122 @@
+<div id="main" class="lift:surround?with=default;at=content">
+
+    <div class="container">
+
+        <!-- Fixed navbar -->
+        <div data-lift="embed?what=templates-hidden/_navbar"></div>
+
+        <div class="container">
+            
+            <div class="col-md-6 col-md-offset-3">
+
+                <h2>
+                    <span data-lift="Loc.i">signup.title</span>
+                </h2>
+
+                <p>
+                    <span data-lift="Msg?id=signupError"></span>
+                </p>
+
+                <!--<div class="lift:Msgs?showAll=true"></div>-->
+                
+                <form role="form" accept-charset="UTF-8" data-lift="form.ajax" autocomplete="off">
+
+                    <div data-lift="Signup">
+
+                        <div class="form-group">
+                            <label for="username">
+                                <span data-lift="Loc.i">signup.username.label</span>
+                            </label>
+                            <input id="username" name="username" placeholder="Nickname" 
+                            autofocus="autofocus"
+                            autocomplete="off" 
+                            class="form-control input-lg">
+                            <span id="username_error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">
+                                <span data-lift="Loc.i">signup.email.label</span>
+                            </label>
+                            <input id="email" name="email" placeholder="Email" 
+                            autocomplete="off" 
+                            class="form-control input-lg">
+                            <span id="email_error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="passwd">
+                                <span data-lift="Loc.i">signup.password.label</span>
+                            </label>
+                            <input id="passwd" name="passwd" placeholder="Password" 
+                            autocomplete="off" 
+                            class="form-control input-lg">
+                            <span id="passwd_error"></span>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <center>
+                                    <div id="recaptcha">
+                                        <!--display recaptcha-->
+                                    </div>
+                                </center>
+                            </div>    
+                        </div>
+
+                        <!--<span class="lift:Msg?id=reCaptcha">error</span>-->
+                                                      
+                        <button type="submit"  class="btn btn-lg btn-white btn-block">
+                            <span data-lift="Loc.i">signup.send</span>
+                        </button>
+
+                        <p class="text-right">
+                            <a class="text-right" href="#" data-toggle="modal" data-target="#t_and_c_m">
+                                Términos y Condiciones
+                            </a>
+                        </p>
+
+                    </div>
+
+                </form>
+
+            </div>
+        
+
+            <!-- Modal -->
+            <div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title" id="myModalLabel">
+                                Términos y Condiciones
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>En construcción ...</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default btn-lg btn-block" data-dismiss="modal">
+                                Estoy de acuerdo.
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </button>
+                        </div>
+
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+
+        </div>
+
+    </div>
+
+    <span lift="embed?what=/templates-hidden/_footerbar"> </span>
+
+    <div data-lift="tail">
+        <script data-lift="with-resource-id" src="/classpath/assets/js/santix.js"></script>
+    </div>
+
+</div>

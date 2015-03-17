@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 lib_managed
 project/boot
 project/build/target
 target
 console.devmode.log
+=======
+target
+project/project
+project/target
+>>>>>>> development

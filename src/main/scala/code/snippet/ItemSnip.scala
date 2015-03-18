@@ -33,14 +33,14 @@ class ItemSnip extends StatefulSnippet with Loggable {
 
 	      	items.flatMap( item => {
 		        ( 
-		        	".id *"            #> Text( item.id.toString ) &
-		        	".name *"          #> Text( item.name.get ) &
-		        	"a [href]"         #> "/item/%s".format(item.slug) &
-		      		".price *"         #> Text( item.price.toString ) &
-		      		".timecreated *"   #> fmt.print(item.timecreated.get) &
-		      		".activate *"      #> Text( item.activate.toString ) &		      		
-		          	"a #edit"          #> link( "/item/edit",() => edit(item), <span class="glyphicon glyphicon-pencil"></span> )
-		          	//"a #delete"      #> link("/item/delete", () => delete(post), Text("item.delete"))
+		        	".id *"          #> Text( item.id.toString ) &
+		        	".name *"        #> Text( item.name.get ) &
+		        	"a [href]"       #> "/%s/%s".format( user.username.get, item.slug ) &
+		      		".price *"       #> Text( item.price.toString ) &
+		      		".timecreated *" #> fmt.print(item.timecreated.get) &
+		      		".activate *"    #> Text( item.activate.toString ) &		      		
+		          	"a #edit"        #> link( "/item/edit",() => edit(item), <span class="glyphicon glyphicon-pencil"></span> ) &
+		          	"a #delete"      #> link("/item/delete", () => delete(item), <span class="glyphicon glyphicon-trash"></span> )
 		        ).apply(xhtml)
 	      	})
 
@@ -52,7 +52,7 @@ class ItemSnip extends StatefulSnippet with Loggable {
 
 	}
 
-  	def editForm(xhtml: NodeSeq): NodeSeq = {
+  	def editForm( xhtml: NodeSeq ): NodeSeq = {
 	    (
 	      "#name"        #> editItem.name.toForm &
 	      "#description" #> (( editItem.description.toForm) ++ SHtml.hidden( save _ ) )
@@ -60,14 +60,19 @@ class ItemSnip extends StatefulSnippet with Loggable {
   	}
 
   	def edit( item : Items ) = {
-    	editItem = item //objeto to update
+    	editItem = item //object to update
   	}
 
   	def save = {
     	val slugger = Slug.Builder.newBuiler().create();
     	editItem.slug( slugger.get(name) )
     	editItem.save()
-    	S.redirectTo("/")
+    	S.redirectTo("/admin")
+  	}
+
+  	def delete( item : Items ) = {
+    	item.delete_!
+    	S.redirectTo("/admin")
   	}
 
 

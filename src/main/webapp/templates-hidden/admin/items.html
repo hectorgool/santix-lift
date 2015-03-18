@@ -1,82 +1,100 @@
 <div>
 
-    <h2>
-        <a class="btn btn-default" href="/item/create" role="button">
-            <span data-lift="Loc.i">items.add</span>
-        </a> <span data-lift="Loc.i">items.title</span>
-    </h2>   
+
+    <div id="row">
+        <div class="col-md-12">
+            <p>
+
+                <h2>
+                    <a class="btn btn-default" href="/item/create" role="button">
+                        <span data-lift="Loc.i">items.add</span>
+                    </a> <span data-lift="Loc.i">items.title</span>
+                </h2>
+
+            </p>
+        </div>
+    </div>
 
     <!--start:search-->        
     <div data-lift="embed?what=templates-hidden/_search"></div>  
     <!--end:search-->
 
-    <table class="table table-striped table-bordered" data-lift="ItemSnip.list">
-                   
-        <thead>
-            <!--
-            <th>
-                <span data-lift="Loc.i">items.id</span>
-            </th>
-            -->
-            <th>
-                <span data-lift="Loc.i">items.name</span>
-            </th>
-            <th>
-                <span data-lift="Loc.i">items.price</span>
-            </th>
-            <th>
-                <span data-lift="Loc.i">items.timecreated</span>
-            </th>
-            <th>
-                <span data-lift="Loc.i">items.activate</span>
-            </th>
-            <th>
-                <span data-lift="Loc.i">items.edit</span>
-            </th>
-            <th>
-                <span data-lift="Loc.i">items.delete</span>
-            </th>
-        </thead>
+    <div id="row">
+        <div class="col-md-12">
+            <p>
 
-        <tbody>
+                <table class="table table-striped table-bordered" data-lift="ItemSnip.list">
+                               
+                    <thead>
+                        <!--
+                        <th>
+                            <span data-lift="Loc.i">items.id</span>
+                        </th>
+                        -->
+                        <th>
+                            <span data-lift="Loc.i">items.name</span>
+                        </th>
+                        <th>
+                            <span data-lift="Loc.i">items.price</span>
+                        </th>
+                        <th>
+                            <span data-lift="Loc.i">items.timecreated</span>
+                        </th>
+                        <th>
+                            <span data-lift="Loc.i">items.activate</span>
+                        </th>
+                        <th>
+                            <span data-lift="Loc.i">items.edit</span>
+                        </th>
+                        <th>
+                            <span data-lift="Loc.i">items.delete</span>
+                        </th>
+                    </thead>
 
-            <tr>
-                <!--
-                <td>
-                    <span class="id"></span>
-                </td>
-                -->
+                    <tbody>
 
-                <td>
-                    <a href="" class="name">name</a>
-                </td>
+                        <tr>
+                            <!--
+                            <td>
+                                <span class="id"></span>
+                            </td>
+                            -->
 
-                <td>
-                    <span class="price"></span>
-                </td>
+                            <td>
+                                <a href="" class="name">name</a>
+                            </td>
 
-                <td>
-                    <span class="timecreated"></span>
-                </td>
+                            <td>
+                                <span class="price"></span>
+                            </td>
 
-                <td>
-                    <span class="activate"></span>
-                </td>
+                            <td>
+                                <span class="timecreated"></span>
+                            </td>
 
-                <td>
-                    <a id="edit" class="btn btn-primary" href="#" role="button">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                    </a>
-                </td>
+                            <td>
+                                <span class="activate"></span>
+                            </td>
 
-                <td>
-                    <a id="delete" class="btn btn-danger" href="#" role="button">
-                        <span class="glyphicon glyphicon-trash"></span>
-                    </a>                    
-                </td>
-            </tr>
-   
-        </tbody>
-    </table>
+                            <td>
+                                <a id="edit" class="btn btn-primary" href="#" role="button">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </a>
+                            </td>
+
+                            <td>
+                                <a id="delete" class="btn btn-danger" href="#" role="button">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </a>                    
+                            </td>
+                        </tr>
+               
+                    </tbody>
+                </table>
+
+            </p>
+        </div>
+    </div>
+
 
 </div>

@@ -39,7 +39,7 @@ class ItemSnip extends StatefulSnippet with Loggable {
 		      		".price *"         #> Text( item.price.toString ) &
 		      		".timecreated *"   #> fmt.print(item.timecreated.get) &
 		      		".activate *"      #> Text( item.activate.toString ) &		      		
-		          	"a #edit"          #> link( "/item/edit",() => edit(item), Text(S.?("item.edit")))
+		          	"a #edit"          #> link( "/item/edit",() => edit(item), <span class="glyphicon glyphicon-pencil"></span> )
 		          	//"a #delete"      #> link("/item/delete", () => delete(post), Text("item.delete"))
 		        ).apply(xhtml)
 	      	})

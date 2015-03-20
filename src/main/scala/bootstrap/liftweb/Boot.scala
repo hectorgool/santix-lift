@@ -14,6 +14,7 @@ import net.liftweb.http.js.jquery._
 import code.lib._
 import code.model._
 import code.snippet._
+import code.api.UserRest
 
 import net.liftmodules.mongoauth.MongoAuth
 import net.liftmodules.mongoauth.Locs
@@ -51,6 +52,9 @@ class Boot extends Loggable with Locs{
 
     // checks for ExtSession cookie    
     LiftRules.earlyInStateful.append(User.testForExtSession)
+
+    //beta
+    UserRest.init()
 
     // Build SiteMap
     val entries = List(
@@ -165,6 +169,9 @@ class Boot extends Loggable with Locs{
       else Empty
     } 
     */   
+
+    //beta    
+
 
   }
 

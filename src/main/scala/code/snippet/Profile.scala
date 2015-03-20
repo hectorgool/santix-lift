@@ -57,7 +57,7 @@ class Profile( unParam: User ) extends StatefulSnippet with Logger{
 	   	   	
 	    docs.flatMap( item => {	    	
 	    	(
-			//"#addToCart [onclick]" #> SHtml.ajaxInvoke(() => TheCart.addToCart( item )) &
+			"#addToCart [onclick]" #> SHtml.ajaxInvoke( () => TheCart.addToCart( item ) ) &
 	        "#name *"              #> item.name &
 	        "img [alt]"            #> item.name &
 	        //"a [href]"             #> "/item/%s".format(item.slug) &
@@ -79,19 +79,27 @@ class Profile( unParam: User ) extends StatefulSnippet with Logger{
 
 object Profile{
 
-
+	
 	val profileParamMenu = Menu.params[User]("Profile", "Profile", { 
         case username :: Nil => 
  			for {
 				u <- User.findByUsername(username)
 			} yield u
-        case _ => 
+        case _ =>
+        	println("username not found!!!")
             Empty 
     }, { 
     	case u => u.username.toString :: Nil 
     }
     ) / *
     
+    
+    /*
+  	val profileParamMenu = Menu.param[User]("User", "Profile", 
+    	User.findByUsername _, _.username.get
+    ) / *
+    */
+
   	def username = User.currentUser match {
 
 		case Full(user) if user.verified == true => {		    

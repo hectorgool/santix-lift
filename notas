@@ -8,3 +8,5 @@ creación de archivo git ignore:
 https://github.com/fmpwizard/lift_starter_2.4/blob/master/.gitignore
 
 Loc.i
+
+curl -H 'Content-Type: application/json' http://localhost:9000/api/user/list

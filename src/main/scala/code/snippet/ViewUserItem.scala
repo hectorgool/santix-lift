@@ -111,8 +111,8 @@ class ViewUserItem( userItem: ( User, Items ) ) extends UserHelper with Loggable
 
 object ViewUserItem{
  
-
- 	val menu = Menu.params[(User, Items)]("User Slug", "User Slug",
+		
+ 	lazy val menu = Menu.params[(User, Items)]("User Slug", "User Slug",
 	{
 		case username :: slug :: Nil => 
 			for {
@@ -126,7 +126,7 @@ object ViewUserItem{
 		case (u, i) => 
 			u.username.get.toString :: i.slug.get.toString :: Nil 
 	}		
-	) / * / *
+	) / * / * 	
 
 
 }

@@ -1,5 +1,5 @@
 body { 
-  padding-top: 70px; /*http://getbootstrap.com/components/#navbar-fixed-top*/
+  padding-top: 60px; /*http://getbootstrap.com/components/#navbar-fixed-top*/
   padding-bottom: 70px;
   background: #FAFAFA !important;
 }
@@ -356,3 +356,22 @@ background-color: #F1F1F1;
 .banner { position: relative; overflow: auto; }
 .banner li { list-style: none; }
 .banner ul li { float: left; }
+
+/*
+Responsive Navbar brand centered
+http://bootsnipp.com/snippets/featured/responsive-navbar-brand-centered
+*/
+.navbar-brand-centered {
+    position: absolute;
+    left: 50%;
+    display: block;
+    width: 160px;
+    text-align: center;
+    background-color: transparent;
+}
+.navbar>.container .navbar-brand-centered, 
+.navbar>.container-fluid .navbar-brand-centered {
+    margin-left: -80px;
+}
+
+

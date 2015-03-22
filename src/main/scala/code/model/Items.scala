@@ -166,3 +166,97 @@ object Items extends Items with MongoMetaRecord[Items] with Loggable {
     option2Box( Items where (_.activate eqs true ) get() )
 
 }
+
+
+class Shiping private () extends MongoRecord[Shiping] with StringPk[Shiping] {
+
+
+  override def meta = Shiping
+
+  object weight extends DoubleField(this) {
+    override def uniqueFieldId: Box[String] = Full("weight")
+    override def displayName = "Weight"
+  }
+
+  object dimensions extends BsonRecordField(this, Dimensions){
+    override def optional_? = true
+  }
+
+}
+
+object Shiping extends Shiping with MongoMetaRecord[Shiping] {
+
+
+  override def collectionName = "items.shiping"
+
+
+}
+
+
+class Dimensions private () extends MongoRecord[Dimensions] with StringPk[Dimensions] {
+
+
+  override def meta = Dimensions
+  
+  object width extends DoubleField(this) {
+    override def uniqueFieldId: Box[String] = Full("width")
+    override def displayName = "Width"
+  }
+
+  object height extends DoubleField(this) {
+    override def uniqueFieldId: Box[String] = Full("height")
+    override def displayName = "Height"
+  }
+
+  object depth extends DoubleField(this) {
+    override def uniqueFieldId: Box[String] = Full("depth")
+    override def displayName = "Depth"
+  }
+
+
+}
+
+object Dimensions extends Dimensions with MongoMetaRecord[Dimensions] {
+
+
+  override def collectionName = "items.shiping.dimensions"
+
+
+}
+
+
+class Pricing private () extends MongoRecord[Pricing] with StringPk[Pricing] {
+
+
+  override def meta = Pricing
+  
+  object list extends DoubleField(this) {
+    override def uniqueFieldId: Box[String] = Full("list")
+    override def displayName = "List"
+  }
+
+  object retail extends DoubleField(this) {
+    override def uniqueFieldId: Box[String] = Full("retail")
+    override def displayName = "Retail"
+  }
+
+  object savings extends DoubleField(this) {
+    override def uniqueFieldId: Box[String] = Full("savings")
+    override def displayName = "Savings"
+  }
+
+  object portentage_savings extends DoubleField(this) {
+    override def uniqueFieldId: Box[String] = Full("portentage_savings")
+    override def displayName = "Portentage Savings"
+  }
+  
+
+}
+
+object Pricing extends Pricing with MongoMetaRecord[Pricing] {
+
+
+  override def collectionName = "items.pricing"
+
+
+}

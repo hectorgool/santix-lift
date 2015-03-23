@@ -27,15 +27,6 @@ class Items private() extends MongoRecord[Items] with ObjectIdPk[Items]{
 
   def meta = Items
 
-  object slug extends StringField(this, 64) {
-    override def uniqueFieldId: Box[String] = Full("slug")
-    override def displayName = "Slug"
-    override def validations =
-      valMinLen(2, S.?("Items.slug.valminlen")) _ ::
-      valMaxLen(64, S.?("Items.slug.valmaxlen")) _ ::
-      super.validations
-  }
-
   object name extends StringField(this, 64) {
     override def uniqueFieldId: Box[String] = Full("name")
     override def displayName = "Name"
@@ -45,30 +36,13 @@ class Items private() extends MongoRecord[Items] with ObjectIdPk[Items]{
       super.validations
   }
 
-  object price extends DoubleField(this) {
-    override def uniqueFieldId: Box[String] = Full("price")
-    override def displayName = "Price"
-  }  
-
-  object cost extends DoubleField(this) {
-    override def uniqueFieldId: Box[String] = Full("cost")
-    override def displayName = "Cost"
-    //override def validations =
-    //  super.validations
-  }
-
-  object sku extends StringField(this, 8) {
-    override def uniqueFieldId: Box[String] = Full("sku")
-    override def displayName = "Sku"
-    //override def validations =
-    //  super.validations
-  }
-
-  object weight extends DoubleField(this) {
-    override def uniqueFieldId: Box[String] = Full("weight")
-    override def displayName = "Weight"
-    //override def validations =
-    //  super.validations
+  object slug extends StringField(this, 64) {
+    override def uniqueFieldId: Box[String] = Full("slug")
+    override def displayName = "Slug"
+    override def validations =
+      valMinLen(2, S.?("Items.slug.valminlen")) _ ::
+      valMaxLen(64, S.?("Items.slug.valmaxlen")) _ ::
+      super.validations
   }
 
   object description extends TextareaField(this, 255) {
@@ -80,26 +54,20 @@ class Items private() extends MongoRecord[Items] with ObjectIdPk[Items]{
       super.validations
   }
 
+  object sku extends StringField(this, 8) {
+    override def uniqueFieldId: Box[String] = Full("sku")
+    override def displayName = "Sku"
+      valMinLen(2, S.?("Items.sku.valminlen")) _ ::
+      valMaxLen(8, S.?("Items.sku.valmaxlen")) _ ::
+      super.validations  }
+
   object categoryIds extends ObjectIdRefField(this, Categories) {
     override def options = Categories.findAll.map(category => (Full(category.id.get), category.name.get))
   }
-
-  object variants extends TextareaField(this, 255) {
-    override def uniqueFieldId: Box[String] = Full("variants")
-    override def displayName = "Variants"
-    override def validations =
-      valMinLen(2, S.?("Items.variants.valminlen")) _ ::
-      valMaxLen(255, S.?("Items.variants.valmaxlen")) _ ::
-      super.validations
-  }
-
-  object items extends MongoListField[Items, String](this)
   
   object stock extends IntField(this) {
     override def uniqueFieldId: Box[String] = Full("stock")
     override def displayName = "Stock"
-    //override def validations =
-    //  super.validations
   }
 
   object images extends MongoListField[Items, String](this)
@@ -113,16 +81,14 @@ class Items private() extends MongoRecord[Items] with ObjectIdPk[Items]{
       super.validations
   }
 
-  object tags extends MongoListField[Items, String](this)
-
   object userId extends ObjectIdRefField(this, User) {
     override def options = User.findAll.map(user => (Full(user.id.get), user.username.get))
   }
-
+  /*
   object bundle extends BooleanField(this) {
     override def displayName = "Bundle"
   }
-
+  */
   object timecreated extends LongField(this){
     override def defaultValue = millis
   }
@@ -135,6 +101,18 @@ class Items private() extends MongoRecord[Items] with ObjectIdPk[Items]{
     override def defaultValue = false
   }
 
+  object shiping extends BsonRecordField(this, Shiping){
+    override def optional_? = true
+  }
+
+  object pricing extends BsonRecordField(this, Pricing){
+    override def optional_? = true
+  }
+
+  object details extends BsonRecordField(this, Details){
+    override def optional_? = true
+  }
+
 
 }
 
@@ -143,15 +121,14 @@ object Items extends Items with MongoMetaRecord[Items] with Loggable {
 
 
   override def collectionName = "Items"
+
   override def fieldOrder = List(
-    id, slug, name, price, cost, sku, weight, description, categoryIds, variants, 
-    items, stock, images, reference, tags, userId, bundle, timecreated, activate
-    )
+    id, slug, name, sku, description, 
+    categoryIds, stock, images, reference, userId, 
+    timecreated, activate
+  )
 
   def findBySlug(in: String): Box[Items] = Items.find( "slug", in )//beta
-
-  def findWeight(in: Double): Box[Items] = 
-    option2Box( Items.where( _.weight eqs in ) get() )
 
   def findId(in: ObjectId): Box[Items] = 
     option2Box( Items.where( _.id eqs in ) get() )
@@ -168,7 +145,7 @@ object Items extends Items with MongoMetaRecord[Items] with Loggable {
 }
 
 
-class Shiping private () extends MongoRecord[Shiping] with StringPk[Shiping] {
+class Shiping private () extends BsonRecord[Shiping] {
 
 
   override def meta = Shiping
@@ -184,16 +161,11 @@ class Shiping private () extends MongoRecord[Shiping] with StringPk[Shiping] {
 
 }
 
-object Shiping extends Shiping with MongoMetaRecord[Shiping] {
+
+object Shiping extends Shiping with BsonMetaRecord[Shiping]
 
 
-  override def collectionName = "items.shiping"
-
-
-}
-
-
-class Dimensions private () extends MongoRecord[Dimensions] with StringPk[Dimensions] {
+class Dimensions private () extends BsonRecord[Dimensions] {
 
 
   override def meta = Dimensions
@@ -216,19 +188,24 @@ class Dimensions private () extends MongoRecord[Dimensions] with StringPk[Dimens
 
 }
 
-object Dimensions extends Dimensions with MongoMetaRecord[Dimensions] {
+
+object Dimensions extends Dimensions with BsonMetaRecord[Dimensions]
 
 
-  override def collectionName = "items.shiping.dimensions"
-
-
-}
-
-
-class Pricing private () extends MongoRecord[Pricing] with StringPk[Pricing] {
+class Pricing private () extends BsonRecord[Pricing] {
 
 
   override def meta = Pricing
+  
+  object price extends DoubleField(this) {
+    override def uniqueFieldId: Box[String] = Full("price")
+    override def displayName = "Price"
+  } 
+  
+  object cost extends DoubleField(this) {
+    override def uniqueFieldId: Box[String] = Full("cost")
+    override def displayName = "Cost"
+  }
   
   object list extends DoubleField(this) {
     override def uniqueFieldId: Box[String] = Full("list")
@@ -245,18 +222,33 @@ class Pricing private () extends MongoRecord[Pricing] with StringPk[Pricing] {
     override def displayName = "Savings"
   }
 
-  object portentage_savings extends DoubleField(this) {
+  object portentage_savings extends IntField(this) {
     override def uniqueFieldId: Box[String] = Full("portentage_savings")
     override def displayName = "Portentage Savings"
   }
-  
-
-}
-
-object Pricing extends Pricing with MongoMetaRecord[Pricing] {
-
-
-  override def collectionName = "items.pricing"
 
 
 }
+
+
+object Pricing extends Pricing with BsonMetaRecord[Pricing]
+
+
+class Details private () extends BsonRecord[Details] {
+
+
+  def meta = Details
+
+  object title extends StringField(this, 64) {
+    override def uniqueFieldId: Box[String] = Full("title")
+    override def displayName = "Title"
+    override def validations =
+      valMinLen(2, S.?("details.title.valminlen")) _ ::
+      valMaxLen(64, S.?("details.title.valmaxlen")) _ ::
+      super.validations
+  }
+
+
+}
+
+object Details extends Details with BsonMetaRecord[Details]

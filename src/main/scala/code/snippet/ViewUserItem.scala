@@ -45,7 +45,7 @@ class ViewUserItem( userItem: ( User, Items ) ) extends UserHelper with Loggable
 		    	"img [alt]"            #> item.name &
 	    		"#name"                #> item.name &
 	    		"a #morepics [href]"   #> "/item/%s/pics".format(item.slug.get) &
-	    		"#price"               #> item.cost &
+	    		//"#price"               #> item.cost &
 	    		".modal-title"         #> item.name &
 				".img"                 #> { (item.images.get.map(image =>
 					"img [src]"        #> "/classpath/assets/img/%s".format(image)
@@ -69,7 +69,7 @@ class ViewUserItem( userItem: ( User, Items ) ) extends UserHelper with Loggable
 		    	"title *"      #> item.name &
 		    	"img [alt]"    #> item.name &
 	    		"#name"        #> item.name &
-	    		"#cost"        #> item.cost &
+	    		//"#cost"        #> item.cost &
 	    		".modal-title" #> item.name &
 				".img"    #> { (item.images.get.map(image =>
 					"img [src]" #> "/classpath/assets/img/%s".format(image)

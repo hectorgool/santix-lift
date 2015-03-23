@@ -55,9 +55,9 @@ class CreateItem extends StatefulSnippet with UserHelper with Loggable{
 		      	val item : Items = Items.createRecord
 		        	.name( name )
 		        	.slug( slugger.get(name) )//slug name
-		        	.price( emptyToZero( price ) )
-		        	.cost( emptyToZero( cost ) )
-		        	.weight( emptyToZero( weight ) )
+		        	//.price( emptyToZero( price ) )
+		        	//.cost( emptyToZero( cost ) )
+		        	//.weight( emptyToZero( weight ) )
 		        	.reference( reference )
 		        	.description( description )
 		        	.userId( user.id.get )
@@ -148,7 +148,7 @@ class ViewItems extends StatefulSnippet with UserHelper with Loggable{
 
 	        "#name *"        #> item.name &
 	        "#name [href]"   #> "/items/%s".format(item.slug) &
-	        "#price *"       #> item.price &
+	        //"#price *"       #> item.price &
 	        "#description *" #> item.description &
 	        "#timecreated *" #> fmt.print(item.timecreated.get)
 

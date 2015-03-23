@@ -20,7 +20,7 @@ object MongoConfig extends Loggable {
       Props.getInt("mongo.port", 27017)
     )
     val srvrs = srvr1 :: Nil
-    MongoDB.defineDb(DefaultMongoIdentifier , new Mongo(srvrs), "hemix2")
+    MongoDB.defineDb(DefaultMongoIdentifier , new Mongo(srvrs), "santix")
 
   }
 

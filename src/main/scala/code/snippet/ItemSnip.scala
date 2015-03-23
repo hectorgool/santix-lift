@@ -55,7 +55,12 @@ class ItemSnip extends StatefulSnippet with Loggable {
   	def editForm( xhtml: NodeSeq ): NodeSeq = {
 	    (
 	      "#name"        #> editItem.name.toForm &
-	      "#description" #> (( editItem.description.toForm) ++ SHtml.hidden( save _ ) )
+	      "#description" #> editItem.description.toForm &
+	      "#price"       #> editItem.pricing.get.price.toForm &
+	      "#cost"        #> editItem.pricing.get.cost.toForm &
+	      "#weight"      #> editItem.shiping.get.weight.toForm &
+	      "#reference"   #> editItem.reference.toForm &
+	      "button *+"    #> SHtml.hidden( save _ )
 	    ).apply(xhtml)
   	}
 
@@ -65,8 +70,8 @@ class ItemSnip extends StatefulSnippet with Loggable {
 
   	def save = {
     	val slugger = Slug.Builder.newBuiler().create();
-    	editItem.slug( slugger.get(name) )
-    	editItem.save()
+    	editItem.slug( slugger.get( editItem.name.get ) )
+    	editItem.save( true )
     	S.redirectTo("/admin")
   	}
 

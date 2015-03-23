@@ -50,7 +50,7 @@ class CreateItem extends StatefulSnippet with UserHelper with Loggable{
 				//depurar
 				val pics = List("pic1.png", "pic2.png", "pic3.png", "pic4.png" , "pic5.png",
 								"pic6.png", "pic7.png", "pic8.png", "pic9.png" , "pic10.png"
-					)
+				)
 
 		        val pricing : Pricing = Pricing.createRecord
 		        	.price( emptyToZero( price ) )
@@ -89,9 +89,9 @@ class CreateItem extends StatefulSnippet with UserHelper with Loggable{
 			          	S.error(errors)
 			          	logger.info("\n errors ~~> "+ errors +"!\n")//depurar
 			          	//S.error("createError", <div> <span class="glyphicon glyphicon-warning-sign"></span> <span data-lift="Loc.i">inputs.errors</span></div>)
-						S.error("nameError", <span data-lift="Msg?id=name;errorClass=errorSignup"> </span> )
+						S.error("nameError",        <span data-lift="Msg?id=name;errorClass=errorSignup"> </span> )
 						S.error("descriptionError", <span data-lift="Msg?id=description;errorClass=errorSignup"> </span>)
-						S.error("referenceError",  <span data-lift="Msg?id=reference;errorClass=errorSignup"> </span> )
+						S.error("referenceError",   <span data-lift="Msg?id=reference;errorClass=errorSignup"> </span> )
 
 		      	}
 		      	
@@ -128,7 +128,7 @@ class CreateItem extends StatefulSnippet with UserHelper with Loggable{
       		("name"        -> item.name.toString )~
       		("slug"        -> item.slug.toString )~
       		("description" -> item.description.toString )//~
-      		//("username"    -> User.getUsername(user.id.get) )
+      		//("username"    -> User.getUsername(user.username.get) )
     
     		ElasticSearch.documentSave( List( "santix", "items", item.id.toString ), jsonTerm )
 
@@ -157,7 +157,7 @@ class ViewItems extends StatefulSnippet with UserHelper with Loggable{
 
 	        "#name *"        #> item.name &
 	        "#name [href]"   #> "/items/%s".format(item.slug) &
-	        //"#price *"       #> item.price &
+	        "#price *"       #> item.pricing.get.price.get &
 	        "#description *" #> item.description &
 	        "#timecreated *" #> fmt.print(item.timecreated.get)
 

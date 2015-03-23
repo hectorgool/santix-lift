@@ -60,7 +60,7 @@ class Profile( unParam: User ) extends StatefulSnippet with Logger{
 			"#addToCart [onclick]" #> SHtml.ajaxInvoke( () => TheCart.addToCart( item ) ) &
 	        "#name *"              #> item.name &
 	        "img [alt]"            #> item.name &
-	        "a [href]"             #> "/%s/%s".format( unParam.username, item.slug ) &
+	        "a [href]"             #> "/%s/%s".format( unParam.username, item.slug.get ) &
 			"#price *"             #> item.pricing.get.price.get &
 	        "#description *"       #> item.description //&
 	        //"#twitter *"     #> item.id &
@@ -102,7 +102,7 @@ object Profile{
   	def username = User.currentUser match {
 
 		case Full(user) if user.verified == true => {		    
-	    	"#username * *"        #> user.username &
+	    	"#username * *"      #> user.username &
 	    	"a #username [href]" #> "/%s".format( user.username )
 		}
 		case _ => {

@@ -57,12 +57,11 @@ class Profile( unParam: User ) extends StatefulSnippet with Logger{
 	   	   	
 	    docs.flatMap( item => {	    	
 	    	(
-			//"#addToCart [onclick]" #> SHtml.ajaxInvoke( () => TheCart.addToCart( item ) ) &
+			"#addToCart [onclick]" #> SHtml.ajaxInvoke( () => TheCart.addToCart( item ) ) &
 	        "#name *"              #> item.name &
 	        "img [alt]"            #> item.name &
-	        //"a [href]"             #> "/item/%s".format(item.slug) &
 	        "a [href]"             #> "/%s/%s".format( unParam.username, item.slug ) &
-	        //"#price *"             #> item.price.toString &
+			"#price *"             #> item.pricing.get.price.get &
 	        "#description *"       #> item.description //&
 	        //"#twitter *"     #> item.id &
 	        //"#facebook *"    #> item.id &

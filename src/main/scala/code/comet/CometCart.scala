@@ -17,7 +17,7 @@ import Helpers._
 /**
  * What's the current cart for this session
  */
-/* 
+ 
 object TheCart extends SessionVar( new Cart() )
 
 /**
@@ -59,9 +59,9 @@ class CometCart extends CometActor {
             S.appendJs( JqWiringSupport.calculateDeltas(old, nw, id)(ciToId _, html _) )
           }
         })) &
-    //"#subtotal" #> WiringUI.asText(cart.subtotal) & // display the subttotal
-    //"#tax"      #> WiringUI.asText(cart.tax) & // display the tax
-    //"#total"    #> WiringUI.asText(cart.total) // display the total
+    "#subtotal" #> WiringUI.asText(cart.subtotal) & // display the subttotal
+    "#tax"      #> WiringUI.asText(cart.tax) & // display the tax
+    "#total"    #> WiringUI.asText(cart.total) // display the total
   }
    
   /**
@@ -92,4 +92,3 @@ class CometCart extends CometActor {
  * Set a new cart for the CometCart
  */
 case class SetNewCart(cart: Cart)
-*/

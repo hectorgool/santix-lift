@@ -52,12 +52,21 @@ class CreateItem extends StatefulSnippet with UserHelper with Loggable{
 								"pic6.png", "pic7.png", "pic8.png", "pic9.png" , "pic10.png"
 					)
 
+		        val pricing : Pricing = Pricing.createRecord
+		        	.price( emptyToZero( price ) )
+		        	.cost( emptyToZero( cost ) )
+
+		        val shiping : Shiping = Shiping.createRecord
+					.weight( emptyToZero( weight ) )
+
+				val details : Details = Details.createRecord
+
 		      	val item : Items = Items.createRecord
 		        	.name( name )
 		        	.slug( slugger.get(name) )//slug name
-		        	//.price( emptyToZero( price ) )
-		        	//.cost( emptyToZero( cost ) )
-		        	//.weight( emptyToZero( weight ) )
+		        	.shiping( shiping )
+		        	.pricing( pricing )
+		        	.details( details )
 		        	.reference( reference )
 		        	.description( description )
 		        	.userId( user.id.get )
@@ -66,7 +75,7 @@ class CreateItem extends StatefulSnippet with UserHelper with Loggable{
 
 				logger.info("\n item ~~> "+ item +"!\n")//depurar
 		        
-		      	item.name.validate ::: item.reference.validate ::: item.description.validate match{
+		      	pricing.price.validate ::: item.name.validate ::: item.reference.validate ::: item.description.validate match{
 
 			        case Nil =>
 			        	val newItem : Items = item.save() //save new user in database

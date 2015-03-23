@@ -39,13 +39,14 @@ class ViewUserItem( userItem: ( User, Items ) ) extends UserHelper with Loggable
 		Items.findSlug( userItem._2.slug.get ) match{
 
 		    case Full(item) if item.activate.get == true => {
+		    	println("item: " + item)
 		    	"a #username *"	       #> "@%s".format(userItem._1.username.get) &
 		    	"a #username [href]"   #> "/%s".format(userItem._1.username.get) &
 		    	"title *"              #> item.name &
 		    	"img [alt]"            #> item.name &
 	    		"#name"                #> item.name &
 	    		"a #morepics [href]"   #> "/item/%s/pics".format(item.slug.get) &
-	    		//"#price"               #> item.cost &
+	    		"#price *"             #> item.pricing.get.price.get &
 	    		".modal-title"         #> item.name &
 				".img"                 #> { (item.images.get.map(image =>
 					"img [src]"        #> "/classpath/assets/img/%s".format(image)
@@ -69,7 +70,7 @@ class ViewUserItem( userItem: ( User, Items ) ) extends UserHelper with Loggable
 		    	"title *"      #> item.name &
 		    	"img [alt]"    #> item.name &
 	    		"#name"        #> item.name &
-	    		//"#cost"        #> item.cost &
+	    		"#price *"     #> item.pricing.get.price.get &
 	    		".modal-title" #> item.name &
 				".img"    #> { (item.images.get.map(image =>
 					"img [src]" #> "/classpath/assets/img/%s".format(image)

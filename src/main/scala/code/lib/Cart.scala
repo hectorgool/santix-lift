@@ -21,13 +21,13 @@ class Cart extends Logger{
   /**
    * The subtotal
    */
-  //val subtotal = contents.lift( _.foldLeft(zero)( _ + _.quantityMultiply( _.ricing.price.get ) ) )
+  val subtotal = contents.lift( _.foldLeft(zero)( _ + _.quantityMultiply( _.pricing.get.price.get ) ) )
 
   /**
    * The taxable subtotal
    */
   // val taxableSubtotal = contents.lift( _.filter(_.taxable). foldLeft(zero)( _ + _.quantityMultiply( _.price ) ) ) 
-  //val taxableSubtotal = contents.lift( _.foldLeft(zero)( _ + _.quantityMultiply( _.price.get ) ) )
+  val taxableSubtotal = contents.lift( _.foldLeft(zero)( _ + _.quantityMultiply( _.pricing.get.price.get ) ) )
 
   /**
    * The current tax rate
@@ -38,17 +38,17 @@ class Cart extends Logger{
   /**
    * The computed tax
    */
-  //val tax = taxableSubtotal.lift(taxRate)(_ * _)
+  val tax = taxableSubtotal.lift(taxRate)(_ * _)
 
   /**
    * The total
    */
-  //val total = subtotal.lift(tax)(_ + _)
+  val total = subtotal.lift(tax)(_ + _)
 
   /**
    * The weight of the cart
    */
-  //val weight = contents.lift(_.foldLeft(zero)(_ +_.quantityMultiply(_.weight.get )) )  
+  val weight = contents.lift(_.foldLeft(zero)(_ +_.quantityMultiply(_.shiping.get.weight.get )) )  
 
   // Helper methods
 

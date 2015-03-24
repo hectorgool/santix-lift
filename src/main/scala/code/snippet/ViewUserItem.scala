@@ -22,13 +22,8 @@ import js.JsCmds.{Noop}
 
 class ViewUserItem( userItem: ( User, Items ) ) extends UserHelper with Loggable{
 
-
-	private var name = ""
-  	private var description = ""
-  	private var slug = ""
   	
 	private val whence = S.referer openOr "/"
-	private var editingItem = Items.createRecord
   	private val fmt = DateTimeFormat.forPattern("dd MMMM yy, HH:mm:ss")
   	private val slugger = Slug.Builder.newBuiler().create();//slug object
 
@@ -39,7 +34,6 @@ class ViewUserItem( userItem: ( User, Items ) ) extends UserHelper with Loggable
 		Items.findSlug( userItem._2.slug.get ) match{
 
 		    case Full(item) if item.activate.get == true => {
-		    	println("item: " + item)
 		    	"a #username *"	       #> "@%s".format(userItem._1.username.get) &
 		    	"a #username [href]"   #> "/%s".format(userItem._1.username.get) &
 		    	"title *"              #> item.name &
@@ -67,15 +61,15 @@ class ViewUserItem( userItem: ( User, Items ) ) extends UserHelper with Loggable
 		Items.findSlug( userItem._2.slug.get ) match{		
 
 		    case Full(item) => {			    	    	
-		    	"title *"      #> item.name &
-		    	"img [alt]"    #> item.name &
-	    		"#name"        #> item.name &
-	    		"#price *"     #> item.pricing.get.price.get &
-	    		".modal-title" #> item.name &
-				".img"    #> { (item.images.get.map(image =>
+		    	"title *"       #> item.name &
+		    	"img [alt]"     #> item.name &
+	    		"#name"         #> item.name &
+	    		"#price *"      #> item.pricing.get.price.get &
+	    		".modal-title"  #> item.name &
+				".img"          #> { (item.images.get.map(image =>
 					"img [src]" #> "/classpath/assets/img/%s".format(image)
 				))} &	    		
-	    		"#timecreated" #> item.timecreated
+	    		"#timecreated"  #> item.timecreated
 		    }
 		    case _ =>{
 		      	Text(S.?("document.not.found"))
@@ -84,27 +78,6 @@ class ViewUserItem( userItem: ( User, Items ) ) extends UserHelper with Loggable
 		}
 
 	}
-
-  	def editForm = {
-    	
-      	"#editName"        #> editingItem.name.toForm &
-      	"#editDescription" #> (( editingItem.description.toForm) ++ SHtml.hidden( save _ ) )    	
-
-  	}	
-
-  	def edit( item : Items ) = {
-
-    	editingItem = item
-
-  	}
-
-  	def save = {
-
-    	editingItem.slug( slugger.get(name) )
-    	editingItem.save()
-    	S.redirectTo("/")
-
-  	}
 
 
 }

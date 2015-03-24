@@ -16,7 +16,6 @@ import de.weltraumschaf.speakingurl._
 class ItemSnip extends StatefulSnippet with Loggable {
 
 
-	private var name = ""
 	private val fmt = DateTimeFormat.forPattern("dd/MM/yy")
 	private var editItem = Items.createRecord
 

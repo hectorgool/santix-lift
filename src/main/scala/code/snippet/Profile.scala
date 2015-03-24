@@ -42,7 +42,7 @@ class Profile( unParam: User ) extends StatefulSnippet with Logger{
   	def username = User.currentUser match {
 
 		case Full(user) if user.verified == true => {		    
-	    	"#username * *"        #> user.username &
+	    	"#username * *"      #> user.username &
 	    	"a #username [href]" #> "/%s".format( user.username )
 		}
 		case _ => {

@@ -25,7 +25,8 @@ object UserRest extends RestHelper with Loggable {
 
 		case "api" :: "user" :: "list" :: Nil Get _ =>
 			//if User.isLoggedIn =>
-				//anyToJValue(listAllUsers)
+			anyToJValue(listAllUsers)
+			/*
 			println("User.currentUser: " + User.currentUser + "!!!!!!!!!!!!!")
 			User.currentUser match {
 				case Full(user) if user.verified == true => {		    
@@ -35,9 +36,10 @@ object UserRest extends RestHelper with Loggable {
 					RedirectResponse("/login")
 				}
 			}
+			*/
 
-		case "api" :: "user" :: "list" :: id :: Nil Get _
-			if User.isLoggedIn =>
+		case "api" :: "user" :: "list" :: id :: Nil Get _ =>
+			//if User.isLoggedIn =>
 				anyToJValue( listUser( id ) )
 	}
 

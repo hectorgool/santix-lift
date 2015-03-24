@@ -35,7 +35,7 @@ class ViewUserItem( userItem: ( User, Items ) ) extends UserHelper with Loggable
 
 		    case Full(item) if item.activate.get == true => {
 		    	"a #username *"	       #> "@%s".format(userItem._1.username.get) &
-		    	"a #username [href]"   #> "/%s".format(userItem._1.username.get) & //beta
+		    	"a #username [href]"   #> "/catalog/%s".format(userItem._1.username.get) & //beta
 		    	"title *"              #> item.name &
 		    	"img [alt]"            #> item.name &
 	    		"#name"                #> item.name &

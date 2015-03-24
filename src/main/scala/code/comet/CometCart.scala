@@ -29,9 +29,36 @@ class CometCart extends CometActor {
   private var cart = TheCart.get
 
   /**
+   * Process messages from external sources
+   */
+  override def lowPriority = {
+
+    
+    // if someone sends us a new cart
+    case SetNewCart(newCart) => {
+      // unregister from the old cart
+      unregisterFromAllDependencies
+
+      // remove all the dependencies for the old cart
+      // from the postPageJavaScript
+      theSession.clearPostPageJavaScriptForThisPage()
+
+      // set the new cart
+      cart = newCart
+
+      // do a full reRender including the fixed render piece
+      reRender(true)
+    }
+
+
+  }
+
+  /**
    * Draw yourself
    */
   def render = {
+
+
     "#contents" #> (
       "tbody" #> 
       Helpers.findOrCreateId(id =>  // make sure tbody has an id
@@ -62,28 +89,10 @@ class CometCart extends CometActor {
     "#subtotal" #> WiringUI.asText(cart.subtotal) & // display the subttotal
     "#tax"      #> WiringUI.asText(cart.tax) & // display the tax
     "#total"    #> WiringUI.asText(cart.total) // display the total
+
+
   }
    
-  /**
-   * Process messages from external sources
-   */
-  override def lowPriority = {
-    // if someone sends us a new cart
-    case SetNewCart(newCart) => {
-      // unregister from the old cart
-      unregisterFromAllDependencies
-
-      // remove all the dependencies for the old cart
-      // from the postPageJavaScript
-      theSession.clearPostPageJavaScriptForThisPage()
-
-      // set the new cart
-      cart = newCart
-
-      // do a full reRender including the fixed render piece
-      reRender(true)
-    }
-  }
 
 }
 

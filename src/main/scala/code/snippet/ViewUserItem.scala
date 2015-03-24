@@ -35,11 +35,11 @@ class ViewUserItem( userItem: ( User, Items ) ) extends UserHelper with Loggable
 
 		    case Full(item) if item.activate.get == true => {
 		    	"a #username *"	       #> "@%s".format(userItem._1.username.get) &
-		    	"a #username [href]"   #> "/%s".format(userItem._1.username.get) &
+		    	"a #username [href]"   #> "/%s".format(userItem._1.username.get) & //beta
 		    	"title *"              #> item.name &
 		    	"img [alt]"            #> item.name &
 	    		"#name"                #> item.name &
-	    		"a #morepics [href]"   #> "/item/%s/pics".format(item.slug.get) &
+	    		"a #morepics [href]"   #> "/catalog/%s/item/%s/pics".format( userItem._1.username.get, item.slug.get ) &
 	    		"#price *"             #> item.pricing.get.price.get &
 	    		".modal-title"         #> item.name &
 				".img"                 #> { (item.images.get.map(image =>
@@ -101,6 +101,38 @@ object ViewUserItem{
 			u.username.get.toString :: i.slug.get.toString :: Nil 
 	}		
 	) / * / * 	
+
+ 	lazy val menuCatalogItem = Menu.params[(User, Items)]("Catalog Item", "Catalog Item",
+	{
+		case username :: slug :: Nil => 
+			for {
+				u <- User.findByUsername(username)
+				i <- Items.findBySlug(slug)
+			} yield (u, i)		
+		case _ => 
+			Empty
+	}, 
+	{
+		case (u, i) => 
+			u.username.get.toString :: i.slug.get.toString :: Nil 
+	}		
+	) / "catalog" / * / "item" / * 	
+
+ 	lazy val menuCatalogItemPics = Menu.params[(User, Items)]("Catalog Item Pics", "Catalog Item Pics",
+	{
+		case username :: slug :: Nil => 
+			for {
+				u <- User.findByUsername(username)
+				i <- Items.findBySlug(slug)
+			} yield (u, i)		
+		case _ => 
+			Empty
+	}, 
+	{
+		case (u, i) => 
+			u.username.get.toString :: i.slug.get.toString :: Nil 
+	}		
+	) / "catalog" / * / "item" / * / "pics"
 
 
 }

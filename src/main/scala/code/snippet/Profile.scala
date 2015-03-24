@@ -1,6 +1,7 @@
 package code
 package snippet
 
+
 import net.liftweb._
 import common._
 import lib._
@@ -43,7 +44,7 @@ class Profile( unParam: User ) extends StatefulSnippet with Logger{
 
 		case Full(user) if user.verified == true => {		    
 	    	"#username * *"      #> user.username &
-	    	"a #username [href]" #> "/%s".format( user.username )
+	    	"a #username [href]" #> "catalog/%s".format( user.username ) //beta
 		}
 		case _ => {
 			S.redirectTo("/login")
@@ -60,13 +61,13 @@ class Profile( unParam: User ) extends StatefulSnippet with Logger{
 			"#addToCart [onclick]" #> SHtml.ajaxInvoke( () => TheCart.addToCart( item ) ) &
 	        "#name *"              #> item.name &
 	        "img [alt]"            #> item.name &
-	        "a [href]"             #> "/%s/%s".format( unParam.username, item.slug.get ) &
+	        "a [href]"             #> "/catalog/%s/item/%s".format( unParam.username, item.slug.get ) & //beta
 			"#price *"             #> item.pricing.get.price.get &
 	        "#description *"       #> item.description //&
-	        //"#twitter *"     #> item.id &
-	        //"#facebook *"    #> item.id &
-	        //"#pinterest *"   #> item.id &
-	        //"#google-plus *" #> item.id
+	        //"#twitter *"         #> item.id &
+	        //"#facebook *"        #> item.id &
+	        //"#pinterest *"       #> item.id &
+	        //"#google-plus *"     #> item.id
 	        ).apply(xhtml)
 	    })	    
 
@@ -92,7 +93,19 @@ object Profile{
     }
     ) / *
     
-    
+	val catalogParamMenu = Menu.params[User]("Catalog", "Catalog", { 
+        case username :: Nil => 
+ 			for {
+				u <- User.findByUsername(username)
+			} yield u
+        case _ =>
+        	println("username not found!!!")
+            Empty 
+    }, { 
+    	case u => u.username.toString :: Nil 
+    }
+    ) / "catalog" / *    
+
     /*
   	val profileParamMenu = Menu.param[User]("User", "Profile", 
     	User.findByUsername _, _.username.get

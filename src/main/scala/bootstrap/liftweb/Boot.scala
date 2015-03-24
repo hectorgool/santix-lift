@@ -86,9 +86,12 @@ class Boot extends Loggable with Locs{
       Menu.i("403") / "403" >> Hidden,
       Menu.i("Throw") / "throw" >> Hidden >> EarlyResponse(() => throw new Exception("This is only a test.")),
       Profile.profileParamMenu,
+      Profile.catalogParamMenu,
       ViewItem.viewItemParam,
       ViewItem.picsItemParam,
-      ViewUserItem.menu
+      ViewUserItem.menu,
+      ViewUserItem.menuCatalogItem,
+      ViewUserItem.menuCatalogItemPics
     )
 
     // set the sitemap.  Note if you don't want access control for

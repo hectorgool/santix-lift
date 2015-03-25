@@ -33,7 +33,7 @@ class CometCart extends CometActor {
    */
   override def lowPriority = {
 
-    
+
     // if someone sends us a new cart
     case SetNewCart(newCart) => {
       // unregister from the old cart
@@ -61,9 +61,10 @@ class CometCart extends CometActor {
 
     "#contents" #> (
       "tbody" #> 
-      Helpers.findOrCreateId(id =>  // make sure tbody has an id
+      Helpers.findOrCreateId( id =>  // make sure tbody has an id
         // when the cart contents updates
         WiringUI.history(cart.contents) {
+          
           (old, nw, ns) => {
             // capture the tr part of the template
             val theTR = ("tr ^^" #> "**").apply(ns)
@@ -76,7 +77,7 @@ class CometCart extends CometActor {
                "@name *" #> ci.name &
                "@qnty *" #> SHtml.ajaxText(ci.qnty.toString, s => {
                               TheCart.setItemCnt(ci, Helpers.toInt(s))
-                            }, "style" -> "width: 20px;") &
+                            }, "class" -> "form-control input-lg") &
                "@del [onclick]" #> SHtml.ajaxInvoke(() => TheCart.removeItem(ci)))(theTR)
             }
             
@@ -84,8 +85,12 @@ class CometCart extends CometActor {
             // based on the deltas, emit the current jQuery
             // stuff to update the display
             S.appendJs( JqWiringSupport.calculateDeltas(old, nw, id)(ciToId _, html _) )
+
           }
-        })) &
+
+        }
+
+        )) &
     "#subtotal" #> WiringUI.asText(cart.subtotal) & // display the subttotal
     "#tax"      #> WiringUI.asText(cart.tax) & // display the tax
     "#total"    #> WiringUI.asText(cart.total) // display the total

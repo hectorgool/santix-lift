@@ -38,8 +38,10 @@ class ItemSnip extends StatefulSnippet with Loggable {
 		      		".price *"       #> item.pricing.get.price.get &
 		      		".timecreated *" #> fmt.print(item.timecreated.get) &
 		      		".activate *"    #> Text( item.activate.toString ) &		      		
-		          	"a #edit"        #> link( "/item/edit",() => edit(item), <span class="glyphicon glyphicon-pencil"></span> ) &
-		          	"a #delete"      #> link("/item/delete", () => delete(item), <span class="glyphicon glyphicon-trash"></span> )
+		          	"a #edit"        #> link( "/item/edit",() => edit(item), 
+		          						S.runTemplate(List("templates-hidden", "partials", "items", "edit")).openOr( <span data-lift="Loc.i">template.not.found</span>) ) &
+		          	"a #delete"      #> link("/item/delete", () => delete(item), 
+		          						S.runTemplate(List("templates-hidden", "partials", "items", "delete")).openOr( <span data-lift="Loc.i">template.not.found</span>) )
 		        ).apply(xhtml)
 	      	})
 

@@ -23,6 +23,10 @@ class ElasticSearchComet extends NamedCometActorTrait{
   override def lowPriority = {
   
     case j @ ElasticSearchResult( json ) => {
+      unregisterFromAllDependencies//beta
+      // remove all the dependencies for the old cart
+      // from the postPageJavaScript
+      theSession.clearPostPageJavaScriptForThisPage()//beta
       partialUpdate(SetHtml("contenido", pagesHtml( json )))
     }    
 
@@ -59,9 +63,9 @@ class ElasticSearchComet extends NamedCometActorTrait{
     def css =
       ".document * *" #> results.hits.hits.map( document => 
         ".link *" #> document._source.name &
-        ".link [href]" #> "/item/%s".format( document._source.slug ) &
+        ".link [href]" #> "/catalog/%s/item/%s".format( document._source.username, document._source.slug ) &
         ".username *" #> document._source.username &
-        ".username [href]" #> "/%s".format( document._source.username ) &        
+        ".username [href]" #> "/catalog/%s".format( document._source.username ) &        
         ".description" #> document._source.description
       )
       css(html)

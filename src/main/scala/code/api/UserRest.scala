@@ -23,9 +23,9 @@ object UserRest extends RestHelper with Loggable {
 
 	serve {
 
-		case "api" :: "user" :: "list" :: Nil Get _ =>
-			//if User.isLoggedIn =>
-			anyToJValue(listAllUsers)
+		case "api" :: "user" :: "list" :: Nil Get _ //=>
+			if User.isLoggedIn =>
+				anyToJValue(listAllUsers)
 			/*
 			println("User.currentUser: " + User.currentUser + "!!!!!!!!!!!!!")
 			User.currentUser match {

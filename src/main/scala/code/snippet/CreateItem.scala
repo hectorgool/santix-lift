@@ -78,9 +78,10 @@ class CreateItem extends StatefulSnippet with UserHelper with Loggable{
 		      	pricing.price.validate ::: item.name.validate ::: item.reference.validate ::: item.description.validate match{
 
 			        case Nil =>
-			        	val newItem : Items = item.save() //save new user in database
-			          	logger.info("\n newItem ~~> "+ newItem +"!\n")//depurar
+			        	//val newItem : Items = item.save() //save new user in database
+			          	//logger.info("\n newItem ~~> "+ newItem +"!\n")//depurar
 			          	//indexItem( item, user ) //index item in Elasticsearch, depurar
+			          	println("user: " + user.username)
 			          	S.redirectTo("/admin")
 			          	Noop
 
@@ -127,8 +128,8 @@ class CreateItem extends StatefulSnippet with UserHelper with Loggable{
     	val jsonTerm =
       		("name"        -> item.name.toString )~
       		("slug"        -> item.slug.toString )~
-      		("description" -> item.description.toString )//~
-      		//("username"    -> User.getUsername(user.username.get) )
+      		("description" -> item.description.toString )~
+      		("username"    -> user.username.toString )
     
     		ElasticSearch.documentSave( List( "santix", "items", item.id.toString ), jsonTerm )
 

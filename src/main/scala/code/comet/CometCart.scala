@@ -47,7 +47,7 @@ class CometCart extends CometActor {
       cart = newCart
 
       // do a full reRender including the fixed render piece
-      //reRender(true)
+      reRender(true)
     }
 
 

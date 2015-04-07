@@ -81,6 +81,7 @@ class Boot extends Loggable with Locs{
       Menu.i("Item Edit") / "item" / "edit" >> RequireLoggedIn,      
       Menu.i("Item Delete") / "item" / "delete" >> RequireLoggedIn,
       Menu.i("Item Admin") / "item" / "admin" >> RequireLoggedIn,
+      Menu.i("Angularjs") / "angularjs",
       Menu.i("Error") / "error" >> Hidden,
       Menu.i("404") / "404" >> Hidden,
       Menu.i("403") / "403" >> Hidden,
